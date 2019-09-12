@@ -1,0 +1,110 @@
+<title>RMUTT Researcher</title>
+<% include ../partials/head %>
+<script src="js/index.js"></script>
+
+<body>
+  <% include ../partials/topbar %>
+
+
+  <div class="ui main text container" style="padding:1rem;">
+
+    <div class="ui container" style="padding:5rem 0rem 2rem 0rem">
+      <% include ../pages/researcher/headerForIndex %>
+      <div class="ui basic segment " id="example1">
+        <div class="left ui rail" style="">
+          <div class="ui  sticky" style="width: 272px !important; height: 262.531px !important; left: 274.5px;">
+
+            <div class="ui statistics large" style="padding-bottom:1rem;">
+              <!-- <div class="statistic" >
+                <div class="value">
+                  22
+                </div>
+                <div class="label">
+                  กำลังแสดง
+                </div>
+              </div> -->
+
+              <div class="statistic ">
+                <div class="text  value">
+                  RMUTT<br>
+                  Researcher
+                </div>
+                <div class="label">
+                  Refine result
+                </div>
+              </div>
+
+
+            </div>
+
+
+            <div class="ui vertical menu fluid">
+
+              <div class="item">
+                <div class="ui transparent icon input">
+                  <input type="text" placeholder="Search...">
+                  <i class="search icon"></i>
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui form">
+                  <div class="grouped fields">
+                    <label>ค้นหาตามสายงาน</label>
+
+                    <% if(expertise.length){
+                      for(var i = 0;i < expertise.length;i++) { %>
+                    <div class="field">
+                      <div class="ui radio checkbox">
+                        <input type="radio" name="example2" value="<%=expertise[i].expertiseID%>" >
+                        <label><%=expertise[i].expertiseName%></label>
+                      </div>
+                    </div>
+                    <% }
+                    }else{ %>
+
+                  <% } %>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+              <div class="item">
+                <b >ค้นหาตามหน่วยงาน</b>
+                <div class=" ui fluid transparent search selection dropdown ">
+                  <input type="hidden" name="country">
+                  <i class="dropdown icon"></i>
+                  <div class="default text">ค้นหาตามหน่วยงาน</div>
+                  <div class="menu">
+                    <% if(workplace.length){
+                      for(var i = 0;i < workplace.length;i++) { %>
+                    <div class="item" data-value="<%=workplace[i].wpID%>"><%=workplace[i].wpName%></div>
+                    <% }
+                    }else{ %>
+
+                  <% } %>
+                  </div>
+                </div>
+              </div>
+              <button class="ui button fluid">
+                Search
+              </button>
+
+            </div>
+          </div>
+        </div>
+        <div class="ui five cards link stackable grid container  sizer vertical segment basic" id="allResearcher">
+          <% include ../pages/researcher/researcher %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <% include ../partials/footer %>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+img {
+  max-width: 100%;
+  /* This rule is very important, please do not ignore this! */
+}
+
+#canvas {
+  height: 400px;
+  width: 400px;
+  background-color: #ffffff;
+  cursor: default;
+  border: 1px solid black;
+}
+
+#result {
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  cursor: default;
+  border: 1px solid black;
+}

@@ -1,0 +1,63 @@
+<div class="cell small-12 " id="showDataElm" style="display:block;">
+  <div style="padding:2.5rem;">
+    <table id="allUserTable" class="hover unstriped ">
+      <thead>
+        <tr>
+          <th>อีเมล</th>
+          <th>ชื่อ</th>
+          <th>นามสกุล</th>
+          <th>มหาวิทยาลัย</th>
+          <th>คณะ</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if(data.length){
+          for(var i = 0;i < data.length;i++) { %>
+        <tr class="showhim ">
+          <td>
+            <%=data[i].email%>
+          </td>
+          <td>
+            <%=data[i].firstname%>
+          </td>
+          <td>
+            <%=data[i].lastname%>
+          </td>
+          <td>
+            <%=data[i].uniName%>
+          </td>
+          <td>
+            <%=data[i].facultyName%>
+          </td>
+          <td>
+            <a class="small button primary showme" href="/user/<%=data[i].id%>">ดู</a>
+          </td>
+          <td>
+            <a class="small button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data[i].firstname %> <%= data[i].lastname %>หรือไม่ ?');" href="/signup/delete/<%=data[i].id %>">ลบ</a>
+          </td>
+        </tr>
+        <% }
+        }else{ %>
+        <tr>
+          <td colspan="3">No user</td>
+        </tr>
+        <% } %>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th>อีเมล</th>
+          <th>ชื่อ</th>
+          <th>นามสกุล</th>
+          <th>มหาวิทยาลัย</th>
+          <th>คณะ</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

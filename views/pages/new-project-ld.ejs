@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="css/new-project.css">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body style="height: 100vh;background:#FAFAFA;">
+  <div class="cell medium-auto medium-cell-block-container">
+    <div class="grid-x">
+      <div class="cell medium-cell-block-y  " style="width:17rem">
+        <% include ../partials/header %>
+      </div>
+      <div class="cell medium-cell-block-y auto">
+        <div class="cell small-6 full  bgforms" align="left">
+          <div style="padding: 2rem">
+            <div class="grid-x">
+              <div class=" small-2"></div>
+              <div class="small-8 fieldProJ">
+                <h1>เพิ่มโครงการวิจัยใหม่</h1>
+                <p style="color:#707070;">รหัสโครงการวิจัย :
+                  <%=data6%>
+                </p>
+
+              </div>
+              <div class=" small-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cell small-6 full" align="center" style="padding:2em;">
+          <div class="grid-x">
+            <div class=" small-2"></div>
+            <div class=" small-6">
+              <ol class="progress-indicator">
+                <li class="is-complete" data-step="1">
+                  <span>เพิ่มรายละเอียดโครงการวิจัย</span>
+                </li>
+                <li class="is-current" data-step="2">
+                  <span>เพิ่มรายชื่อหัวหน้าโครงการ</span>
+                </li>
+                <li class="" data-step="3">
+                  <span>เพิ่มรายชื่อผู้ร่วมวิจัย</span>
+                </li>
+              </ol>
+            </div>
+            <div class=" small-4"></div>
+          </div>
+        </div>
+
+        <div class="cell small-6" style="padding:2rem;">
+          <form onload="document.id_formNewProJ.reset();" id="id_formNewProJ" name="id_formNewProJ" enctype="multipart/form-data" method="post" action="/new-project-ld">
+            <input type="hidden" name="idofproject" value="<%=data6%>" id="ID_idproject" required>
+            <div class="grid-x">
+              <div class="cell small-2"></div>
+              <div class="cell small-6">
+
+                <div class="grid-y grid-margin-y">
+
+                  <!-- ROW กลุ่มข้อมูล -->
+                  <div class="cell small-6" style="padding:0em 0em 1em 0em;background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+                    <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                      <label style="font-size:1.5em;">หัวหน้าโครงการวิจัย</label>
+                      <p style="color:red;">กรุณากรอกข้อมูลให้ครบทุกช่อง ก่อนกดยืนยัน หากไม่มีข้อมูลให้ใส่ - </p>
+                    </div>
+
+                    <div class="grid-y">
+
+                                            <div class="cell small-6" style="padding:1em 1em 0em 1em;">
+
+                        <div class="grid-x grid-margin-x" style="padding-top:1em">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3">
+                            <label style="font-size:1.25em;">หัวหน้าโครงการวิจัย</label>
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6">
+                            <input type="text" name="searchUserLD" id="searchUserLD" placeholder="กรุณาใส่อีเมลนักวิจัย เพื่อค้นหาและเพิ่ม" />
+                          </div>
+                          <!-- คอลัม 3 -->
+                          <div class="cell small-3">
+                            <button type="button" class="hollow button small" href="#" id="addRow">เพิ่ม</button>
+                            <button type="button" class="hollow button small alert" href="#" id="removeRow">ลบ</button>
+                          </div>
+
+
+                        </div>
+                      </div>
+                      <div class="cell small-6" style="padding:0em 1em 0em 1em;">
+
+                        <div class="grid-x grid-margin-x" style="padding-top:1em">
+                          <!-- คอลัม 1 -->
+                          <div class="cell small-3"></div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-6">
+                            <span class="label alert hide" id="notFoundSearchUserLD"><i class="fi-x-circle"></i>ไม่พบ</span>
+                            <span class="label alert hide" id="emptrySearchUserLD"><i class="fi-x-circle"></i>กรุณากรอกข้อมูลก่อนค้นหา</span>
+                          </div>
+                          <!-- คอลัม 2 -->
+                          <div class="cell small-3"></div>
+                        </div>
+                      </div>
+
+                      <div class="cell small-6" style="padding:0em 1em 0em 1em;">
+                        <table id="memberLDProjTable" class=" hover unstriped " style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>อีเมล</th>
+                              <th>ชื่อ</th>
+                              <th>นามสกุล</th>
+                              <th>สัดส่วนงานวิจัย</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+
+                </div>
+
+              </div>
+
+              <div class=" small-2" data-sticky-container style="border-radius:5px;padding-left: 1em;">
+                <div class=" grid-y" data-sticky data-margin-top="22">
+
+                  <div class=" small-6" style="padding-bottom: 1em;">
+                    <input disabled type="submit" value="ยืนยัน" class="button primary expanded" id="id_confirmNewProJ" style="border-radius:5px;padding:1em;">
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+</body>
+
+<footer>
+  <% include ../partials/footer %>
+  <script src="js/datatable/memberLDprojtable.js"></script>
+  <script src="js/datatable/memberRSprojtable.js"></script>
+  <script src="js/module/project.js"></script>
+
+
+</footer>
+
+</html>

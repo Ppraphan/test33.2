@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/regis.css">
+<link rel="stylesheet" href="css/signup.css">
+<link rel="stylesheet" href="css/foundation-datepicker.css">
+<link rel="stylesheet" href="css/foundation-datepicker.css.map">
+<link rel="stylesheet" href="css/foundation-datepicker.min.css">
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body style="background-color: #efefef;  height: 100vh;">
+
+  <div class="cell medium-auto medium-cell-block-container">
+    <div class="grid-x">
+      <div class="cell medium-cell-block-y " style="width:17rem">
+        <% include ../partials/header %>
+        <% include ../partials/flash %>
+      </div>
+
+      <div class="cell medium-cell-block-y auto" style="width:100%">
+
+        <div class="cell small-6-container full bgforms" align="center">
+          <div>
+            <h1>จัดการผู้ใช้ในระบบ</h1>
+            <input id="txtSearchAllUser" type="search" name="search" placeholder="ค้นหาผู้ใช้งานในระบบ" class="animated-search-form form-control">
+            <div align="right" style="padding-right:1rem">
+              <a class="button secondary" href="/useridcheck">เพิ่มผู้ใช้งานใหม่</a>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="grid-x">
+
+          <div id="alert-area" class="alert-area"></div>
+          <% include ../pages/alluser/displaydata %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+<footer>
+  <script src="js/datatable/allUser.js"></script>
+  <script src="js/departmentJS.js"></script>
+  <script src="js/department/newDepartment.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <% include ../partials/footer %>
+</footer>
+
+</html>

@@ -1,0 +1,92 @@
+<% include ../partials/head %>
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable();
+  });
+</script>
+<script src="js/edit-profile.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700&display=swap" rel="stylesheet">
+
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css" rel="stylesheet">
+
+<body class="thaiheader">
+  <% include ../partials/topbar %>
+
+  <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;">
+
+    <div class="ui grid">
+      <div class="two column large screen only row">
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui stackable two column grid container contentbody">
+
+      <div class="column five wide">
+
+        <% include ../partials/nav-edit %>
+
+      </div>
+
+      <div class="column eleven wide ">
+        <div class="row">
+          <h1 class="ui header" style="font-family: 'Sarabun', sans-serif;font-weight:600">ผลงานทั้งหมดของฉัน</h1>
+          <div class="ui basic segment">
+            <% include ../pages/datatable %>
+    
+
+
+
+
+
+
+
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="ui grid">
+      <div class="two column large screen only row">
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <% include ../partials/footer %>
+</body>
+
+</html>

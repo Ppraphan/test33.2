@@ -1,0 +1,17 @@
+<% if (message != ' ' && message != undefined ) { %>
+
+<script>
+  $(document).ready(function() {
+    $.notiny({
+      text: '<%=message%>',
+      position: 'fluid-top',
+      theme: 'light',
+    });
+
+
+
+  });
+</script>
+
+
+<% } %>

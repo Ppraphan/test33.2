@@ -1,0 +1,49 @@
+
+<div class="ui modal">
+
+  <i class="close icon"></i>
+  <div class="header">เปลี่ยนรูปประจำตัว
+  </div>
+
+  <div class="ui placeholder segment basic">
+    <div class="ui two column stackable center aligned grid">
+      <div class="ui vertical divider">-></div>
+      <div class="middle aligned row">
+        <div class="column">
+          <div>
+            <canvas id="canvas" class="image">
+              Your browser does not support the HTML5 canvas element.
+            </canvas>
+          </div>
+          <div class="field">
+            <input class="" type="file" id="fileInput" accept="image/*" />
+            <div class="ui  buttons">
+
+              <input class="ui button primary" type="button " id="btnCrop" value="ครอบ" />
+              <input class="ui button" type="button" id="btnRestore" value="คืนค่า" />
+            </div>
+
+          </div>
+        </div>
+        <div class="column">
+          <img id="result">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="actions">
+
+
+
+    <div class="ui black deny button">Cancel</div>
+    <div class="ui positive right  button" id="changeImage">OK</div>
+  </div>
+
+
+
+
+
+
+</div>

@@ -1,0 +1,185 @@
+<% include ../partials/head %>
+<title><%=userinfo.firstname%> <%=userinfo.lastname%> | RMUTT Researcher</title>
+<script>
+  $(document).ready(function() {
+    $('.menu .item')
+      .tab();
+
+    $('.special.cards .image').dimmer({
+      on: 'hover'
+    });
+
+
+
+
+  });
+</script>
+<link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
+
+<body>
+  <% include ../partials/topbar %>
+
+  <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;">
+    <div class="ui stackable two column grid container">
+
+      <div class="column five wide ">
+        <div class="row ">
+
+          <img class="ui small centered rounded image" src="./userprofile/<%=userinfo.profilePic%>">
+
+
+          <h2 class="ui header centered">
+            ประพันธ์ ประทุมวัน
+            <div class="sub header "><%=userinfo.userPosition%></div>
+          </h2>
+
+          <div class="ui basic center aligned  segment">
+            <div class="ui basic buttons ">
+              <a href="/edit-profile">
+                <button class="ui button tiny ">
+                  แก้ไขข้อมูลส่วนตัว
+                </button>
+              </a>
+              <a href="/all-works">
+                <button class="ui button tiny">
+                  แก้ไขผลงาน
+                </button>
+              </a>
+            </div>
+          </div>
+
+
+          <div class="ui basic center aligned  segment">
+            <h2 class="ui sub header centered">Follow me</h2>
+            <div class="ui tiny horizontal divided list ">
+              <div class="item">
+                <a class="ui basic image mini">
+                  <img src="/f_logo_RGB-Blue_58.png">
+                </a>
+              </div>
+
+              <div class="item">
+                <a class="ui basic image mini">
+                  <img src="glyph-logo_May2016.png">
+                </a>
+              </div>
+
+              <div class="item">
+                <a class="ui basic image mini">
+                  <img src="Twitter_Social_Icon_Rounded_Square_Color.png">
+                </a>
+              </div>
+
+              <div class="item">
+                <a class="ui basic image mini ">
+                  <img src="LINE_APP.png">
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+
+
+
+          <div class="ui divider"></div>
+
+          <div class="ui label Medium">ที่อยู่ที่ทำงาน</div>
+          <div class="ui large   list">
+
+            <div class="item">
+              <% for(var i=0; i<workplace.length; i++) {%>
+                <%if (workplace[i].wpID==userinfo.userWpID) { %>
+                  <b><%=workplace[i].wpName%></b>
+                <% } %>
+              <% } %>
+
+            </div>
+            <div class="item">
+              <%=userinfo.userSubWpName%>
+            </div>
+          </div>
+          <div class="ui divider"></div>
+
+          <div class="ui label Medium">
+            ติดต่อที่ทำงาน
+          </div>
+          <div class="ui large list">
+            <div class="item">
+              <div class="middle aligned content">
+                <i class="phone icon"></i> <%=userinfo.userWorkTel%>
+              </div>
+
+            </div>
+            <div class="item">
+              <div class="middle aligned content">
+                <i class="envelope icon"></i> <%=userinfo.userWorkEmail%>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui divider"></div>
+
+          <div class="ui label Medium">
+            สายงานที่เชี่ยวชาญ
+          </div>
+          <div class=" large ui  list">
+
+            <li>
+              <% for(var i=0; i<expertise.length; i++) {%>
+                <%if (expertise[i].expertiseID==userinfo.userExpertiseID) { %>
+                  <b><%=expertise[i].expertiseName%></b>
+                <% } %>
+              <% } %>
+              <ul>
+
+                  <% var array = userinfo.userSubExpertiseID.split(',') %>
+                  <% for(var i=0; i<array.length; i++) {%>
+
+                    <% for(var j=0; j<subexpertise.length; j++) {%>
+                      <%if (subexpertise[j].subExpertiseAI_ID==array[i]) { %>
+                        <li><%=subexpertise[j].subExpertiseName%></li>
+                      <% } %>
+                    <% } %>
+
+                  <% } %>
+
+              </ul>
+            </li>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="column eleven wide">
+        <div class="row">
+
+          <div id="context1">
+            <div class="ui top attached tabular menu">
+
+              <a class="item active" data-tab="first">ผลงานของฉัน</a>
+              <a class="item" data-tab="second">ทักษะ</a>
+              <a class="item" data-tab="third">การศึกษาและการทำงาน</a>
+            </div>
+            <div class="ui tab attached  segment active" data-tab="first">
+              <% include ../pages/profile/portforio %>
+            </div>
+            <div class="ui tab attached  segment" data-tab="second">
+              <% include ../pages/profile/skill %>
+            </div>
+            <div class="ui tab attached  segment" data-tab="third">
+              <% include ../pages/profile/experienceAndEducation %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <% include ../partials/footer %>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<div style="padding:2.5rem;" id="pageShowAllGrants">
+  <table id="grantstable" class="hover unstriped ">
+    <thead>
+      <tr>
+        <th>ลำดับ</th>
+        <th>ปีงบประมาณ</th>
+        <th>ประเภททุนวิจัย</th>
+        <th>ชื่อทุนวิจัย</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if(data.length){
+      for(var i = 0;i < data.length;i++) { %>
+      <tr class="showhim ">
+        <td></td>
+        <td>
+          <%=data[i].grants_Years%>
+        </td>
+        <td>
+          <%=data[i].grants_Type%>
+        </td>
+        <td>
+          <a class="nameRsearch" href="#" onclick="myFunctiongrants3('<%=data[i].idGrants%>')">
+            <%=data[i].grants_Name%>
+          </a>
+        </td>
+        <td>
+          <a class="small button warning showme" href="#" onclick="myFunctiongrants5('<%=data[i].idGrants%>')">แก้ไข</a>
+        </td>
+        <td>
+          <a class="small button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data[i].grants_Name %> หรือไม่ ?');" href="grants/delete/<%=data[i].idGrants %>">ลบ</a>
+        </td>
+      </tr>
+      <% }
+    }else{ %>
+      <tr>
+        <td colspan="3">No user</td>
+      </tr>
+      <% } %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th>ปีงบประมาณ</th>
+        <th>ประเภททุนวิจัย</th>
+        <th>ชื่อทุนวิจัย</th>
+
+      </tr>
+    </tfoot>
+  </table>
+</div>

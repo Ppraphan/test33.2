@@ -1,0 +1,160 @@
+<% include ../partials/head %>
+<title>Edit Profile | RMUTT Researcher</title>
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js" ></script>
+
+
+
+
+<script src="js/edit-profile.js"></script>
+<link href="css/edit-profile.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700&display=swap" rel="stylesheet">
+
+<script src="js/dropzone.js"></script>
+
+<body class="thaiheader">
+  <% include ../partials/topbar %>
+
+  <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;">
+
+    <div class="ui grid">
+      <div class="two column large screen only row">
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui stackable two column grid container">
+
+      <div class="column five wide">
+        <% include ../partials/nav-edit %>
+      </div>
+
+      <div class="column eleven wide ">
+        <div class="row">
+          <h1 class="ui header" style="font-family: 'Sarabun', sans-serif;font-weight:600"><i class="user icon"></i> ข้อมูลส่วนตัว </h1>
+          <div class="ui basic segment">
+            <form class="ui form" action="/edit-profile"method="post"enctype="multipart/form-data">
+
+              <div class="ui medium image" id="profileEdit">
+                <div class="ui dimmer">
+                  <div class="content">
+                    <div class="ui primary button" onclick="newprofile()" id="chgImage">เพิ่มรูปภาพ</div>
+                  </div>
+                </div>
+                <img type='file'name="profileimage" id="userProfile"class="ui image" style="min-height:300px" accept=".png, .jpg, .jpeg" src="./userprofile/<%=userinfo.profilePic%>">
+
+
+              </div>
+
+              <% include ../pages/edit-profile/uploadImage %>
+
+              <p>คลิกที่ภาพเพื่ออัพโหลด จำกัดขนาดไฟล์สูงสุดที่ 2 MB</p>
+              <h4 class="ui dividing header thaiheader">ข้อมูลทั่วไป</h4>
+              <div class="field">
+                <label>WIFI ID</label>
+                <div class="fields">
+                  <div class="sixteen wide field disabled">
+                    <input type="text" name="" placeholder="1158104620708">
+                  </div>
+
+                </div>
+              </div>
+              <div class="field">
+                <label>ชื่อ-นามสกุล</label>
+                <div class="two fields">
+
+                  <div class="field">
+                    <input type="text" name="firstname" placeholder="ชื่อ" value="<%=userinfo.firstname%>">
+                  </div>
+                  <div class="field">
+                    <input type="text" name="lastname" placeholder="นามสกุล" value="<%=userinfo.lastname%>">
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label>Facebook</label>
+                <div class="fields">
+                  <div class="sixteen wide field">
+                    <input type="text" name="facebook" placeholder="Facebook" value="<%=userinfo.facebook%>">
+                  </div>
+
+                </div>
+              </div>
+              <div class="field">
+                <label>Instagram</label>
+                <div class="fields">
+                  <div class="sixteen wide field">
+                    <input type="text" name="instagram" placeholder="Instagram" value="<%=userinfo.instagram%>">
+                  </div>
+
+                </div>
+              </div>
+              <div class="field">
+                <label>Twitter</label>
+                <div class="fields">
+                  <div class="sixteen wide field">
+                    <input type="text" name="twitter" placeholder="Twitter" value="<%=userinfo.twitter%>">
+                  </div>
+
+                </div>
+              </div>
+              <div class="field">
+                <label>Line ID</label>
+                <div class="fields">
+                  <div class="sixteen wide field">
+                    <input type="text" name="line" placeholder="Line ID" value="<%=userinfo.line%>">
+                  </div>
+
+
+
+
+
+
+
+                </div>
+              </div>
+              <button class="ui primary button" type="submit">ยืนยัน</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="ui grid">
+      <div class="two column large screen only row">
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <% include ../partials/footer %>
+</body>
+
+</html>

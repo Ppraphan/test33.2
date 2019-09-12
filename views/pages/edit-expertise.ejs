@@ -1,0 +1,125 @@
+<% include ../partials/head %>
+
+<script src="js/edit-expertise.js"></script>
+<script src="js/ckeditor.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700&display=swap" rel="stylesheet">
+
+<body class="thaiheader">
+  <% include ../partials/topbar %>
+  <% include ../partials/flash %>
+  <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;min-height:80vh;">
+
+    <div class="ui grid">
+      <div class="two column large screen only row">
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui stackable two column grid container">
+
+      <div class="column five wide">
+
+        <% include ../partials/nav-edit %>
+
+      </div>
+
+      <div class="column eleven wide ">
+        <div class="row">
+          <h1 class="ui header" style="font-family: 'Sarabun', sans-serif;font-weight:600">ความเชี่ยวชาญและทักษะ</h1>
+          <div class="ui basic segment">
+            <form class="ui form" action="/edit-expertise" method="post" enctype="multipart/form-data" id="expertiseForm">
+
+              <h4 class="ui dividing  thaiheader">ข้อมูลทั่วไป</h4>
+              <div class="field">
+                <label>สายงานที่เชี่ยวชาญ</label>
+                <div class="fields">
+                  <div class="sixteen wide field">
+
+                    <div class="ui selection dropdown" id="expertiseDiv">
+                      <input type="hidden" name="userExpertiseID" id="expertiseID" value="<%=userinfo.userExpertiseID%>">
+                      <i class="dropdown icon"></i>
+                      <div class="default text">สายงานที่เชี่ยวชาญ</div>
+                      <div class="menu">
+                        <% for(var i=0; i<expertise.length; i++) {%>
+                        <div class="item" data-value="<%=expertise[i].expertiseID%>"><%=expertise[i].expertiseName%></div>
+                        <% } %>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="field">
+                <label id="resetMajor">สาขา</label>
+                <div class="fields">
+                  <div class="sixteen wide field">
+                    <div class="ui multiple selection dropdown " id="majorDiv">
+                      <input name="userSubExpertiseID" type="hidden" id="majorHideinput" value="<%=userinfo.userSubExpertiseID%>">
+                      <i class="dropdown icon"></i>
+                      <div class="default text">สาขา</div>
+                      <div class="menu " id="majorSelect">
+                        <% for(var i=0; i<subexpertise.length; i++) {%>
+                        <div class="item" data-value="<%=subexpertise[i].subExpertiseAI_ID%>"><%=subexpertise[i].subExpertiseName%></div>
+                        <% } %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <label>ทักษะ</label>
+              <div class="fields">
+                <div class="sixteen wide field">
+                  <textarea name="userSkill" id="skill">
+                      <% if(userinfo.userSkill != '' ){ %>
+                         <%=userinfo.userSkill%>
+                       <% } else{ %>
+                         &lt;p&gt;<ul>
+                           <li>ทักษะ</li>
+                           <li>ทักษะ</li>
+                         </ul>&lt;/p&gt;
+                      <% } %>
+                  </textarea>
+                </div>
+              </div>
+              <button class="ui primary button" type="submit">ยืนยัน</button>
+              <div class="ui error message"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="ui grid">
+      <div class="two column large screen only row">
+        <div class="column">
+          <div class="ui basic segment">
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <% include ../partials/footer %>
+</body>
+
+</html>

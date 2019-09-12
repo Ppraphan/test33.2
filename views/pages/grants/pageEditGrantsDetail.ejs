@@ -1,0 +1,78 @@
+<div class="cell small-6"  id="pageEditGrantsDetail" style="padding:2rem  4em 2em 10em;display:none;background-color:#FAFAFA;height:78vh">
+  <form  enctype="multipart/form-data" method="post" name="editGrant" action="/grants/update">
+    <div class="grid-x grid-margin-x">
+      <div class="cell small-2">
+      </div>
+      <div class="cell small-6">
+
+        <div class="grid-y grid-margin-y">
+
+          <!-- ROW กลุ่มข้อมูล -->
+          <div class="cell small-6" style="background-color:#FFF;border-radius:10px;border:1px solid #E6E6E6;">
+
+            <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+              <label style="font-size:1.5em;">แก้ไขรายละเอียดทุนวิจัย</label>
+            </div>
+
+            <div class="grid-y">
+
+              <div class="cell small-6" style="padding:0em 1em 1em 1em;">
+                <div class="grid-x grid-margin-x">
+                  <!-- คอลัม 1 -->
+                  <div class="cell medium-12 floated-label-wrapper">
+                    <label for="gNameIDEdit">ชื่อทุนวิจัย</label>
+                    <input name="gIDEdit" id="gIDEdit"style="margin:0px!important" type="hidden" placeholder="ชื่อทุนวิจัย" readonly/>
+                    <input name="grants_Name" id="gNameIDEdit"style="margin:0px!important" type="text" placeholder="ชื่อทุนวิจัย" required/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                <div class="grid-x grid-margin-x">
+                  <!-- คอลัม 1 -->
+                  <div class="cell medium-12 floated-label-wrapper">
+                    <label for="gSupporterIDEdit">แหล่งเงินทุน</label>
+                    <input name="grants_Supporter" id="gSupporterIDEdit"style="margin:0px!important" type="text"  class="reset" placeholder="แหล่งเงินทุน" required/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cell small-6" style="padding:1em 1em 1em 1em;">
+                <div class="grid-x grid-margin-x">
+                  <!-- คอลัม 1 -->
+                  <div class="cell small-6 floated-label-wrapper">
+                    <label for="gTypeIDEdit">ประเภททุนวิจัย</label>
+                    <select name="grants_Type" id="gTypeIDEdit"style="margin:0px!important" required>
+                      <option value="ทุนภายนอก">ทุนภายนอก</option>
+                      <option value="ทุนภายใน">ทุนภายใน</option>
+                    </select>
+                  </div>
+                  <!-- คอลัม 2 -->
+                  <div class="cell small-6 floated-label-wrapper">
+                    <label for="gYearIDEdit">ปีงบประมาณ</label>
+                    <input type="text" name="grants_Years" id="gYearIDEdit"style="margin:0px!important;border-radius:5px;" placeholder="ปีงบประมาณ" required />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class=" small-2" data-sticky-container style="border-radius:5px;padding-left: 1em;">
+        <div class=" grid-y" data-sticky data-margin-top="15">
+
+          <div class=" small-6" style="padding-bottom: 1em;">
+              <input class="button primary" type="submit" value="ยืนยัน" />
+          </div>
+
+          <div class=" small-6">
+            <input class="button alert" onclick="closeEditGrantAndShowAll()" type="reset" value="ยกเลิก" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

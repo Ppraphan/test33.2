@@ -1,0 +1,59 @@
+<div class="cell small-12 " id="showDataElm" style="display:block;">
+  <div style="padding:2.5rem;">
+
+    <table id="departmentTable" class="hover unstriped ">
+      <thead>
+        <tr>
+          <th>ประเทศ</th>
+          <th>มหาวิทยาลัย</th>
+          <th>คณะ</th>
+          <th>หน่วยงานหลัก</th>
+          <th>ชื่อหน่วยงานย่อย</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if(data.length){
+          for(var i = 0;i < data.length;i++) { %>
+        <tr class="showhim ">
+          <td>
+            <%=data[i].countryName%>
+          </td>
+
+          <td>
+            <%=data[i].uniName%>
+          </td>
+
+          <td>
+            <%=data[i].facultyName%>
+          </td>
+
+          <td>
+            <%=data[i].departmentName%>
+          </td>
+
+          <td>
+            <%=data[i].Sub_Dpment_name%>
+          </td>
+
+        </tr>
+        <% }
+        }else{ %>
+        <tr>
+          <td colspan="3">No user</td>
+        </tr>
+        <% } %>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th>ประเทศ</th>
+          <th>มหาวิทยาลัย</th>
+          <th>คณะ</th>
+          <th>หน่วยงานหลัก</th>
+          <th>ชื่อหน่วยงานย่อย</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

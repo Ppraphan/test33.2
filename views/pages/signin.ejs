@@ -1,0 +1,82 @@
+<% include ../partials/head %>
+<script src="js/particles.min.js"></script>
+
+
+<link rel="stylesheet" href="css/VincentGarreau.css">
+
+
+
+<script src="js/VincentGarreau.js"></script>
+
+
+
+<style type="text/css">
+  .image {
+    margin-top: -100px;
+  }
+
+  .column {
+    max-width: 450px;
+  }
+
+  .center-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+</style>
+<!-- particles.js container -->
+<div id="particles-js"></div>
+
+
+
+<body style="min-height:100%;
+  background:linear-gradient(0deg,rgba(0, 0, 0,0.4),rgba(0, 0, 0,0.4)),url(/bg05.jpg);
+  background-size:cover;">
+  <% include ../partials/topbar %>
+
+
+
+
+  <div class="ui grid middle aligned center-screen">
+    <div class="column">
+
+      <h2 class="ui image header thaiheader" style="color:#FFF">
+        <img src="logo-03.png" class="image">
+        <div class="content">
+          ลงชื่อเข้าใช้
+        </div>
+
+      </h2>
+
+
+      <form class="ui large form"  method="post" action="/signin">
+        <div class="ui basic segment ">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" name="wifiID" placeholder="ID WIFI">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" name="password" placeholder="Password">
+            </div>
+          </div>
+            <input class="ui fluid large teal submit button" type="submit" value="ลงชื่อเข้าใช้" />
+        </div>
+
+        <div class="ui error message"></div>
+        <div class="ui " style="color:#FFF">
+          ลืมรหัสผ่าน? <a href="https://semantic-ui.com/examples/login.html#">ดูที่นี่</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+</body>

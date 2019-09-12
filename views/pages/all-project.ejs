@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+  <link rel="stylesheet" href="css/all-project.css">
+</head>
+
+<body style="background-color: #efefef;  height: 100vh;">
+
+  <div class="cell medium-auto medium-cell-block-container">
+    <div class="grid-x">
+      <div class="cell medium-cell-block-y " style="width:17rem">
+        <% include ../partials/header %>
+        <% include ../partials/flash %>
+      </div>
+
+      <div class="cell medium-cell-block-y auto" style="width:100%">
+
+        <div class="cell small-6-container full bgforms" align="center">
+          <div >
+            <h1>โครงการวิจัยทั้งหมดในระบบ</h1>
+            <input id="txtSearchTopProjectTable" type="search" name="search" placeholder="ค้นหาโครงการ" class="animated-search-form form-control">
+            <div align="right" style="padding-right:1rem">
+              <a class="button secondary" href="/new-project">เพิ่มโครงการวิจัยใหม่</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-x">
+          <div class="cell small-12 " id="showDataElm" style="display:block;">
+            <div style="padding:2.5rem;">
+              <table id="allProjectTable" class="hover unstriped ">
+                <thead>
+                  <tr>
+                    <th>ปีงบประมาณ</th>
+                    <th>สถานะ</th>
+                    <th>ชื่อโครงการ</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% if(data0.length){
+                    for(var i = 0;i < data0.length;i++) { %>
+                  <tr class="showhim ">
+                    <td>
+                      <%=data0[i].grants_Years%>
+                    </td>
+                    <td class="tooltipp">
+                      <%=data0[i].stateOfProJ%>
+                      <span class="tooltiptext">
+                        <% if (data0[i].stateOfProJ==1) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">1. ทำบันทึกขออนุมัติดำเนินโครงการฯ (ฟอร์ม 2)พร้อมแนบแผนการใช้จ่ายเงิน(วจ.1)(ฟอร์ม 1)</a>
+                        <% } %>
+                        <% if (data0[i].stateOfProJ==2) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">2. ทำบันทึกเบิกงวด 1 (ฟอร์ม 3)</a>
+                        <% } %>
+                        <% if (data0[i].stateOfProJ==3) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">3. การจัดซื้อวัสดุ (ฟอร์ม 4)</a>
+                        <% } %>
+                        <% if (data0[i].stateOfProJ==4) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">4. การจัดจ้าง (ฟอร์ม 5)</a>
+                        <% } %>
+                        <% if (data0[i].stateOfProJ==5) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">5. ใบสำคัญรับเงิน (ฟอร์ม 6)</a>
+                        <% } %>
+                        <% if (data0[i].stateOfProJ==6) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">6. ขอขยายเวลาดำเนินโครงการวิจัยฯ (ฟอร์ม 7)</a>
+                        <% } %>
+                        <% if (data0[i].stateOfProJ==7) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">7. ทำบันทึกส่งหลักฐานการใช้เงิน (ฟอร์ม  8)</a>
+                        <% } %>
+                        <% if (data0[i].stateOfProJ==8) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">8. ทำบันทึกเบิกเงินงวดที่ 2 (ฟอร์ม 9 )พร้อมแนบรายงานความก้าวหน้า(ฟอร์ม 10)</a>
+                        <% } %>
+                        <% if (data0[i].stateOfProJ==9) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">9. ทำบันทึกเบิกงวด 3  (ฟอร์ม 11)พร้อมส่งเล่มรายงานวิจัยฉบับสมบูรณ์ 6 เล่ม ซีดี 2 แผ่น</a>
+                        <% } %>
+                        <% if (data0[i].stateOfProJ==10) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">10. ทำบันทึกส่งเล่มรายงานวิจัย (ฟอร์ม 12)</a>
+                        <% } %>
+                        <% if (data0[i].stateOfProJ==11) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">11. ทำบันทึกส่งมอบครุภัณฑ์ (ถ้ามี) (ฟอร์ม 13)</a>
+                        <% } %>
+                        <% if (data0[i].stateOfProJ==12) { %>
+                        <a style="color:#FFFFFF;padding-right:10px">12. ทำบันทึกปิดโครงการวิจัย (ฟอร์ม 14)พร้อมแนบ วจ.2 (ฟอร์ม  15)</a>
+                        <% } %>
+                      </span>
+                    </td>
+                    <td>
+                      <%=data0[i].projectNameTH%>
+                    </td>
+                    <td>
+                      <a class="small button primary showme" href="/view-project/<%= data0[i].idproject%>">ดู</a>
+                    </td>
+                    <td>
+                      <a class="small button alert showme" onclick="return confirm('คุณต้องการที่จะ ลบ <%= data0[i].projectNameTH %> หรือไม่');" href="/deleteproject/<%= data0[i].idproject%>">ลบ</a>
+                    </td>
+                  </tr>
+                  <% }
+                  }else{ %>
+                  <tr>
+                    <td colspan="3">No user</td>
+                  </tr>
+
+                  <% } %>
+                </tbody>
+
+                <tfoot>
+                  <tr>
+                    <th>ปีงบประมาณ</th>
+                    <th>สถานะ</th>
+                    <th>ชื่อโครงการ</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+<footer>
+
+  <script src="js/datatable/allProject.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <% include ../partials/footer %>
+</footer>
+
+</html>
