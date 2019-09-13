@@ -2,27 +2,19 @@
 <% include ../partials/head %>
 <script src="js/index.js"></script>
 
-<body>
+<body style="height: 500px;overflow: auto;"id="example2" >
   <% include ../partials/topbar %>
 
 
   <div class="ui main text container" style="padding:1rem;">
 
-    <div class="ui container" style="padding:5rem 0rem 2rem 0rem">
+    <div class="ui container" style="padding:5rem 0rem 2rem 0rem;" >
       <% include ../pages/researcher/headerForIndex %>
-      <div class="ui basic segment " id="example1">
+      <div class="ui basic segment " id="example1" >
         <div class="left ui rail" style="">
           <div class="ui  sticky" style="width: 272px !important; height: 262.531px !important; left: 274.5px;">
 
-            <div class="ui statistics large" style="padding-bottom:1rem;">
-              <!-- <div class="statistic" >
-                <div class="value">
-                  22
-                </div>
-                <div class="label">
-                  กำลังแสดง
-                </div>
-              </div> -->
+            <div class="ui one statistics large" style="padding-bottom:1rem;">
 
               <div class="statistic ">
                 <div class="text  value">
@@ -36,6 +28,26 @@
 
 
             </div>
+
+            <div class="ui two statistics tiny">
+              <div class="statistic TEAL">
+                <div class="value" id="nowShow">
+                  10</div>
+                <div class="label">
+                  now show
+                </div>
+              </div>
+              <div class="statistic">
+                <div class="value">
+                  <i class="users icon"></i>
+                  <%= countUsers[0].countUsers%>
+                </div>
+                <div class="label">
+                  from all
+                </div>
+              </div>
+            </div>
+
 
 
             <div class="ui vertical menu fluid">
@@ -96,8 +108,9 @@
             </div>
           </div>
         </div>
-        <div class="ui five cards link stackable grid container  sizer vertical segment basic" id="allResearcher">
+        <div class="ui five cards link stackable grid container  sizer vertical segment basic" id="allResearcher" >
           <% include ../pages/researcher/researcher %>
+
         </div>
       </div>
     </div>

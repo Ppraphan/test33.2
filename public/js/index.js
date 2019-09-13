@@ -77,44 +77,92 @@ $(function() {
 
 
 
-var beginshow = 10;
-var lastshow = 20;
-var previous;
+// var beginshow = 10;
+// var lastshow = 20;
+// var previous;
+//
+// function loadmoreuser() {
+//
+//   document.getElementById("Neighbor2").classList.add("loading");
+//
+//   $.ajax({
+//     type: 'GET',
+//     url: '/getuserdata/?beginshow=' + beginshow,
+//     dataType: 'json',
+//     success: function(data) {
+//       /* Adds Element AFTER NeighborElement */
+//       Element.prototype.appendAfter = function(element) {
+//         element.parentNode.insertBefore(this, element.nextSibling);
+//       }, false;
+//
+//       /* Typical Creation and Setup A New Orphaned Element Object */
+//       var newElement = document.createElement('div');
+//       newElement.innerHTML = 'New Element';
+//
+//       /*  Add NewElement BEFORE -OR- AFTER Using the Aforementioned Prototypes */
+//       // newElement.appendAfter(document.getElementById('Neighbor2'));
+//
+//       // newElement.insertBefore("#Neighbor2");
+//
+//
+//       for (var i = 0; i < data.length; i++) {
+//         $("#allResearcher").append('<div class="card" id=""><div class="image"><img src="./userprofile/' + data[i].profilePic + '" ></div><div class="content"><div class="ui small header">' + data[i].firstname + ' ' + data[i].lastname +
+//           '</div><div class="meta"><a>' + data[i].userPermission + '</a></div></div><div class="extra content"><span><i class="map marker alternate icon"></i>' + data[i].university + '</span></div></div>');
+//       }
+//
+//     }
+//   });
+//
+//
+//   beginshow = beginshow + 10;
+//   document.getElementById("countNowShow").innerHTML = beginshow;
+//   document.getElementById("Neighbor2").classList.remove("loading");
+// };
 
-function loadmoreuser() {
 
-  document.getElementById("Neighbor2").classList.add("loading");
 
+
+
+
+
+$(function() {
+  var beginshow = 10;
+  var listElm = document.querySelector('#allResearcher');
+
+
+function loadMore(){
   $.ajax({
     type: 'GET',
     url: '/getuserdata/?beginshow=' + beginshow,
     dataType: 'json',
     success: function(data) {
-      /* Adds Element AFTER NeighborElement */
-      Element.prototype.appendAfter = function(element) {
-        element.parentNode.insertBefore(this, element.nextSibling);
-      }, false;
 
-      /* Typical Creation and Setup A New Orphaned Element Object */
-      var newElement = document.createElement('div');
-      newElement.innerHTML = 'New Element';
+      // Add 20 items.
+      var nextItem = 1;
 
-      /*  Add NewElement BEFORE -OR- AFTER Using the Aforementioned Prototypes */
-      // newElement.appendAfter(document.getElementById('Neighbor2'));
-
-      // newElement.insertBefore("#Neighbor2");
-
-
-      for (var i = 0; i < data.length; i++) {
+      for (var i = 0; i < 3; i++) {
         $("#allResearcher").append('<div class="card" id=""><div class="image"><img src="./userprofile/' + data[i].profilePic + '" ></div><div class="content"><div class="ui small header">' + data[i].firstname + ' ' + data[i].lastname +
           '</div><div class="meta"><a>' + data[i].userPermission + '</a></div></div><div class="extra content"><span><i class="map marker alternate icon"></i>' + data[i].university + '</span></div></div>');
       }
-
     }
   });
+}
 
 
-  beginshow = beginshow + 10;
-  document.getElementById("countNowShow").innerHTML = beginshow;
-  document.getElementById("Neighbor2").classList.remove("loading");
-};
+
+  var previousScroll = 0;
+  $('html,body').animate({
+    scrollTop: 0
+  }, 'slow');
+  $(window).scroll(function() {
+    var currentScroll = $(this).scrollTop();
+    if (currentScroll > previousScroll) {
+      loadMore();
+    }
+    previousScroll = currentScroll;
+  });
+
+  // Initially load some items.
+  loadMore();
+
+});

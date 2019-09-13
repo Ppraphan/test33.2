@@ -95,17 +95,19 @@ module.exports = function(app, passport) {
 
     var sql = "SELECT profilePic,firstname,lastname,userPosition,userWpID FROM project.users limit 0, 10;"+
     "SELECT * FROM project.expertise  order by expertiseName;"+
-    "SELECT * FROM project.workplace order by wpName;";
+    "SELECT * FROM project.workplace order by wpName;"+
+    "SELECT count(*)as countUsers FROM project.users;";
 
     con.query(sql, function(err, results) {
       if (err) console.log("Error Selecting : %s ", err);
 
       res.render('pages/index', {
         message: message,
-        userinfo: userinfo, 
+        userinfo: userinfo,
         data:results[0],
         expertise:results[1],
         workplace:results[2],
+        countUsers:results[3],
       });
     });
 
