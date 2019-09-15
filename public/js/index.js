@@ -1,8 +1,9 @@
 $(document).ready(function() {
-  $('.ui.sticky')
-    .sticky({
+  $('.ui.sticky').sticky({
       offset: 70,
-      context: '#example1'
+      context: '#example1',
+      pushing: true,
+
     });
 
   $('.ui.dropdown').dropdown();
@@ -122,15 +123,8 @@ $(function() {
 
 
 
-
-
-
-$(function() {
-  var beginshow = 10;
-  var listElm = document.querySelector('#allResearcher');
-
-
-function loadMore(){
+function loadMore(beginshow){
+  var beginshow=beginshow;
   $.ajax({
     type: 'GET',
     url: '/getuserdata/?beginshow=' + beginshow,
@@ -140,29 +134,62 @@ function loadMore(){
       // Add 20 items.
       var nextItem = 1;
 
-      for (var i = 0; i < 3; i++) {
-        $("#allResearcher").append('<div class="card" id=""><div class="image"><img src="./userprofile/' + data[i].profilePic + '" ></div><div class="content"><div class="ui small header">' + data[i].firstname + ' ' + data[i].lastname +
-          '</div><div class="meta"><a>' + data[i].userPermission + '</a></div></div><div class="extra content"><span><i class="map marker alternate icon"></i>' + data[i].university + '</span></div></div>');
-      }
+
+  for (var i = 0; i < 5; i++) {
+    $("#allResearcher").append('<div class="card" id="">\
+      <div class="image">\
+        <img src="" >\
+      </div>\
+      <div class="content">\
+        <div class="ui small header"></div>\
+        <div class="meta"></div>\
+      </div>\
+      <div class="extra content">\
+        <span>\
+          <i class="map marker alternate icon"></i>\
+        </span>\
+      </div>\
+    </div>');
+  }
+  $('.ui.sticky').sticky('refresh')
+  ;
+
+
+
     }
   });
 }
 
 
+$(function() {
+  var beginshow = 10;
+  var listElm = document.querySelector('#allResearcher');
+  var scrollBottom = $(window).scrollTop() + $(window).height();
 
   var previousScroll = 0;
+  var countscroll = 0;
+
   $('html,body').animate({
     scrollTop: 0
   }, 'slow');
   $(window).scroll(function() {
     var currentScroll = $(this).scrollTop();
     if (currentScroll > previousScroll) {
-      loadMore();
+      if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        // alert("bottom");
+        if(beginshow<=70){
+        loadMore(beginshow);
+        beginshow=beginshow+10;
+        }
+      }
+
+
+
     }
     previousScroll = currentScroll;
   });
 
   // Initially load some items.
-  loadMore();
+  // loadMore();
 
 });

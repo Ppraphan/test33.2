@@ -7,67 +7,83 @@
 
 
 <div class="ui bulleted list">
+  <% if (expData != ' ' && expData != undefined ) { %>
+  <% for(var i=0; i<expData.length; i++) {%>
   <div class="item">
-    <div>2017 - now</div>
+    <div><%=expData[i].chEntYear%> - <%=expData[i].chLeftYear%></div>
     <div class="list">
       <h2 class="ui sub header">
-        Web developer
+        <%=expData[i].chPosition%>
       </h2>
-      <span>Google</span>
+      <span><%=expData[i].chCompany%></span>
     </div>
   </div>
-  <div class="item">
-    <div>2017 - now</div>
-    <div class="list">
-      <h2 class="ui sub header">
-        Web developer
-      </h2>
-      <span>Google</span>
-    </div>
-  </div>
-  <div class="item">
-    <div>2017 - now</div>
-    <div class="list">
-      <h2 class="ui sub header">
-        Web developer
-      </h2>
-      <span>Google</span>
-    </div>
-  </div>
+  <% } %>
+  <% } %>
 </div>
+
+
 <div class="ui divider"></div>
+
+
 <h2 class="ui header">
   <i class="graduation cap icon"></i>
   <div class="content">
     Education
   </div>
 </h2>
+
 <div class="ui bulleted list">
+
+  <% if (educateData != ' ' && educateData != undefined ) { %>
+  <% for(var i=0; i<educateData.length; i++) {%>
+    <% if (educateData[i].ehEducateLavel != 6 ) { %>
   <div class="item">
-    <div>2017</div>
+    <div><%=educateData[i].ehGraduateYear%></div>
     <div class="list">
       <h2 class="ui sub header">
-        Web developer
+        <%=educateData[i].ehEducationalBackground%>
       </h2>
-      <span>Google</span>
+      <span><%=educateData[i].ehCollegeName%></span>
     </div>
   </div>
+  <% } %>
+  <% } %>
+  <% } %>
+
+
+
+</div>
+
+<div class="ui divider"></div>
+
+
+<h2 class="ui header">
+  <i class="trophy  icon"></i>
+  <div class="content">
+    Other certificate
+  </div>
+</h2>
+
+<div class="ui bulleted list">
+
+  <% if (educateData != ' ' && educateData != undefined  ) { %>
+  <% for(var i=0; i<educateData.length; i++) {%>
+<% if (educateData[i].ehEducateLavel == 6 ) { %>
   <div class="item">
-    <div>2016</div>
+    <div><%=educateData[i].ehGraduateYear%></div>
     <div class="list">
       <h2 class="ui sub header">
-        Web developer
+        <%=educateData[i].ehEducationalBackground%>
       </h2>
-      <span>Google</span>
+      <span><%=educateData[i].ehCollegeName%></span>
     </div>
   </div>
-  <div class="item">
-    <div>2014</div>
-    <div class="list">
-      <h2 class="ui sub header">
-        Web developer
-      </h2>
-      <span>Google</span>
-    </div>
-  </div>
+  <% } %>
+  <% } %>
+
+<% } %>
+
+
+
 </div>

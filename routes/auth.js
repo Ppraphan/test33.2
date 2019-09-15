@@ -93,7 +93,7 @@ module.exports = function(app, passport) {
     var message = req.query.message;
     var userinfo = req.user;
 
-    var sql = "SELECT profilePic,firstname,lastname,userPosition,userWpID FROM project.users limit 0, 10;"+
+    var sql = "SELECT profilePic,firstname,lastname,userPosition,userWpID,userSubWpName FROM project.users limit 0, 10;"+
     "SELECT * FROM project.expertise  order by expertiseName;"+
     "SELECT * FROM project.workplace order by wpName;"+
     "SELECT count(*)as countUsers FROM project.users;";

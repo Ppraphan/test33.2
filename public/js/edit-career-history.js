@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
-    $('#editCareerHistory').DataTable();
+    $('#editCareerHistory').DataTable({
+        "order": [[ 2, "desc" ]]
+    });
 
 
   $('[data-toggle="datepicker"]').datepicker({

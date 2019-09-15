@@ -87,8 +87,11 @@ require('./routes/user.js')(app);
 //กลุ่มบัญชีผู้ใช้
 require('./routes/personal-info.js')(app, session);
 
-//แกเไขประวัติการทำงาน
-require('./routes/editCareerHistory.js')(app, session);
+//แก้ไขประวัติการทำงาน
+require('./routes/editCareerHistory.js')(app);
+
+//แก้ไขประวัติการทำงาน
+require('./routes/editEducationHistory.js')(app);
 
 //กลุ่มผลงาน
 app.get('/all-works', function(req, res) {

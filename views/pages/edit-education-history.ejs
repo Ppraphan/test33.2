@@ -1,12 +1,22 @@
 <% include ../partials/head %>
+<title>ประวัติการศึกษา | RMUTT Researcher</title>
 
-<script src="js/edit-profile.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700&display=swap" rel="stylesheet">
 
+<script src="js/edit-education-history.js"></script>
+
+<link href="css/datepicker.css" rel="stylesheet">
+<script src="js/datepicker.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" rel="stylesheet">
+
 <body class="thaiheader">
   <% include ../partials/topbar %>
-
+  <% include ../partials/flash %>
   <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;">
 
     <div class="ui grid">
@@ -24,7 +34,7 @@
       </div>
     </div>
 
-    <div class="ui stackable two column grid container contentbody">
+    <div class="ui stackable two column grid container contentbody" style="min-height:55vh">
 
       <div class="column five wide">
 
@@ -36,23 +46,33 @@
         <div class="row">
           <h1 class="ui header" style="font-family: 'Sarabun', sans-serif;font-weight:600">ประวัติการศึกษา</h1>
           <div class="ui basic segment">
-            <form class="ui form">
+            <form class="ui form" action="/edit-education-history" method="post" enctype="multipart/form-data" id="educationHistory">
 
 
 
-
-
-
-              <div class="fields">
-                <div class="field ">
+              <div class="two fields">
+                <div class="field four wide">
                   <label>ปีที่สำเร็จการศึกษา</label>
-                  <div class="ui selection dropdown">
-                    <input type="hidden" name="gender">
+                  <div class="ui  fluid input">
+                    <input name="ehGraduateYear" id="ehGraduateYear" data-toggle="datepicker" placeholder="ใส่เป็นปี ค.ศ." autocomplete="off">
+                  </div>
+                </div>
+                <div class="field">
+                  <label>ระดับวุฒิการศึกษา</label>
+                  <div class="ui fluid search selection dropdown">
+                    <input type="hidden" name="ehEducateLavel" id="ehEducateLavel">
                     <i class="dropdown icon"></i>
-                    <div class="default text">Gender</div>
+                    <div class="default text">กรุณาเลือกระดับวุฒิการศึกษา</div>
                     <div class="menu">
-                      <div class="item" data-value="1">Male</div>
-                      <div class="item" data-value="0">Female</div>
+
+
+                      <% if(listEducateBG.length){
+                        for(var i = 0;i < listEducateBG.length;i++) { %>
+                      <div class="item" data-value="<%=listEducateBG[i].ebID%>"><%=listEducateBG[i].ebName%></div>
+                      <% }
+                      }else{ %>
+                      <% } %>
+
                     </div>
                   </div>
                 </div>
@@ -61,11 +81,11 @@
 
 
               <div class="field">
-                <label>วุฒิการศึกษาที่ได้รับ</label>
+                <label>วุฒิการศึกษา</label>
                 <div class="fields">
                   <div class="sixteen wide field">
                     <div class="ui  fluid input">
-                      <input type="text" placeholder="Search a very wide input...">
+                      <input name="ehEducationalBackground"id="ehEducationalBackground" type="text" placeholder="เช่น วศ.บ.(วิศวกรรมคอมพิวเตอร์)">
                     </div>
                   </div>
 
@@ -77,63 +97,62 @@
                 <div class="fields">
                   <div class="sixteen wide field">
                     <div class="ui  fluid input">
-                      <input type="text" placeholder="Search a very wide input...">
+                      <input name="ehCollegeName"id="ehCollegeName" type="text" placeholder="เช่น มหาวิทยาลัยราชมงคลธัญบุรี">
                     </div>
                   </div>
 
                 </div>
               </div>
-              <button class="ui button" type="submit">Submit</button>
+              <button class="ui button primary" type="submit">เพิ่ม</button>
 
             </form>
             <div class="ui divider"></div>
 
             <div class="field">
 
-              <div class="ui card raised link">
-                <div class="content">
-                  <i class="right floated trash icon"></i>
-                  <div class="">2019 - now</div>
-                </div>
-                <div class="content">
+              <table id="editEducationHistory" class="ui  table hover" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>ระดับวุฒิการศึกษา</th>
+                    <th>วุฒิการศึกษา</th>
+                    <th>ชื่อสถานศึกษา</th>
+                    <th>ปีที่สำเร็จการศึกษา</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(listEducateHist.length){
+                    for(var i = 0;i < listEducateHist.length;i++) { %>
+                  <tr class=" ">
+                    <td>
+                      <%=listEducateHist[i].ebName%>
+                    </td>
 
-                  <div class="description">
-                    <p class="ui header thaiheader">ตำแหน่ง</p>
-                    <p>บริษัท</p>
-                  </div>
-                </div>
+                    <td>
+                      <%=listEducateHist[i].ehEducationalBackground%>
+                    </td>
 
-              </div>
+                    <td>
+                      <%=listEducateHist[i].ehCollegeName%>
+                    </td>
 
-              <div class="ui card raised link">
-                <div class="content">
-                  <i class="right floated trash icon"></i>
-                  <div class="">2019 - now</div>
-                </div>
-                <div class="content">
+                    <td>
+                      <%=listEducateHist[i].ehGraduateYear%>
+                    </td>
+                    <td>
+                      <a onclick="return confirm('คุณต้องการที่จะ ลบหรือไม่ ?');" href="/edit-education-history/delete/<%=listEducateHist[i].ehID%>"><i class="trash icon"></i></a>
+                    </td>
 
-                  <div class="description">
-                    <p class="ui header thaiheader">ตำแหน่ง</p>
-                    <p>บริษัท</p>
-                  </div>
-                </div>
+                  </tr>
+                  <% }
+                  }else{ %>
+                  <tr>
+                    <td colspan="5">No data</td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
 
-              </div>
-
-              <div class="ui card raised link">
-                <div class="content">
-                  <i class="right floated trash icon"></i>
-                  <div class="">2019 - now</div>
-                </div>
-                <div class="content">
-
-                  <div class="description">
-                    <p class="ui header thaiheader">ตำแหน่ง</p>
-                    <p>บริษัท</p>
-                  </div>
-                </div>
-
-              </div>
 
 
 
@@ -174,5 +193,3 @@
 
   <% include ../partials/footer %>
 </body>
-
-</html>

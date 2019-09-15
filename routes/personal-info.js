@@ -8,8 +8,12 @@ module.exports = function(app) {
     var userinfo = req.user;
     var userinfoexpert = req.user.userExpertiseID;
 
-    var sql = "SELECT * FROM project.expertise order by expertiseName;SELECT * FROM project.subexpertise  where subExpertiseID=" +
-      userinfoexpert + " order by subExpertiseName;SELECT * FROM project.workplace; ";
+    var sql = "SELECT * FROM project.expertise order by expertiseName;"+
+    "SELECT * FROM project.subexpertise  where subExpertiseID=" + userinfoexpert + " order by subExpertiseName;"+
+    "SELECT * FROM project.workplace;"+
+    "SELECT * FROM project.educationhistory where ehUserAI_ID = " + req.user.id + " order by ehGraduateYear DESC;"+
+    "SELECT * FROM project.careerhistory where chUserAI_ID = " + req.user.id + " order by chEntYear DESC; ";
+
     con.query(sql, function(err, results) {
       if (err) console.log("Error Selecting : %s ", err);
 
@@ -20,6 +24,8 @@ module.exports = function(app) {
         expertise: results[0],
         subexpertise: results[1],
         workplace: results[2],
+        educateData: results[3],
+        expData: results[4],
       });
 
     });
@@ -101,22 +107,9 @@ module.exports = function(app) {
 
   });
 
-  app.get('/edit-career-history', function(req, res) {
-    var userinfo = req.user;
-    var message = req.query.message;
 
-    res.render('pages/edit-career-history', {
-      message: message,
-      userinfo: userinfo,
-    });
-  });
 
-  app.get('/edit-education-history', function(req, res) {
-    var userinfo = req.user;
-    res.render('pages/edit-education-history', {
-      userinfo: userinfo,
-    });
-  });
+
 
 
 
@@ -211,7 +204,7 @@ module.exports = function(app) {
 
 
 
- //for ajax req data
+  //for ajax req data
   app.get('/edit-expertise-data', function(req, res) {
     var userinfo = req.user;
     var expertiseSelectData = req.query.expertiseSelectData;
@@ -228,6 +221,25 @@ module.exports = function(app) {
 
 
 
-  })
+  });
+
+
+
+  app.get('/getuserdata', function(req, res) {
+    var userinfo = req.user;
+    var beginshow = req.query.beginshow;
+
+    var sql = "SELECT profilePic,firstname,lastname,userPosition,userWpID FROM project.users orders  limit " + beginshow + ",10;"
+
+    con.query(sql, function(err, results) {
+      console.log(sql);
+      if (err) console.log("Error Selecting : %s ", err);
+
+      res.send(results);
+
+    })
+  });
+
+
 
 }

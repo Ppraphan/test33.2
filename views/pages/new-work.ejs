@@ -1,34 +1,11 @@
 <% include ../partials/head %>
+
 <script src="js/ckeditor.js"></script>
-
-<script>
-  $(document).ready(function() {
-    $('#example').DataTable();
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
 
 
-
-    ClassicEditor
-      .create(document.querySelector('#editor'),{
-         removePlugins: [ 'ImageUpload' ],
-      })
-      .then(editor => {
-        console.log(editor);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  });
-
-
-  function insertpopup(){
-    $('.ui.modal')
-      
-      .modal('show')
-    ;
-  }
-</script>
-<script src="js/edit-profile.js"></script>
 <script src="js/new-work.js"></script>
+
 <link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700&display=swap" rel="stylesheet">
 
@@ -36,7 +13,6 @@
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
-
 
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" rel="stylesheet">
@@ -99,24 +75,38 @@
                 </textarea>
               </div>
 
+
+
+          <br/>
+
+
+
+
+
+
+
+
+
+
+
               <div class="ui modal">
-    <i class="close icon"></i>
-    <div class="header">
-      Modal Title
-    </div>
-    <div class="image content">
-      <div class="image">
-        An image can appear on left or an icon
-      </div>
-      <div class="description">
-        A description can appear on the right
-      </div>
-    </div>
-    <div class="actions">
-      <div class="ui button">Cancel</div>
-      <div class="ui button">OK</div>
-    </div>
-  </div>
+                <i class="close icon"></i>
+                <div class="header">
+                  Modal Title
+                </div>
+                <div class="image content">
+                  <div class="image">
+                    An image can appear on left or an icon
+                  </div>
+                  <div class="description">
+                    A description can appear on the right
+                  </div>
+                </div>
+                <div class="actions">
+                  <div class="ui button">Cancel</div>
+                  <div class="ui button">OK</div>
+                </div>
+              </div>
               <button class="ui button" type="submit">Submit</button>
             </form>
           </div>
@@ -293,5 +283,3 @@
 
   <% include ../partials/footer %>
 </body>
-
-</html>

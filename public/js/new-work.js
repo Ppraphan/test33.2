@@ -36,3 +36,24 @@ $(document).ready(function() {
 
   });
 });
+$(document).ready(function() {
+
+  $('#example').DataTable();
+
+
+
+  ClassicEditor.create(document.querySelector('#editor'), {
+      removePlugins: ['ImageUpload'],
+    })
+    .then(editor => {
+      console.log(editor);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+});
+function insertpopup() {
+  $('.ui.modal')
+
+    .modal('show');
+}
