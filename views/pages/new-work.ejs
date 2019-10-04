@@ -1,26 +1,19 @@
 <% include ../partials/head %>
+<title>เพิ่มผลงานใหม่ | RMUTT Researcher</title>
 
-<script src="js/ckeditor.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
-
-
+<script src="js/plugins/ckeditor.js"></script>
 <script src="js/new-work.js"></script>
+
+<link href="css/datepicker.css" rel="stylesheet">
+<script src="js/plugins/datepicker.js"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700&display=swap" rel="stylesheet">
 
 
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
-
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css" rel="stylesheet">
-
 <body class="thaiheader">
   <% include ../partials/topbar %>
-
+  <% include ../partials/flash %>
   <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;">
 
     <div class="ui grid">
@@ -47,216 +40,79 @@
       </div>
 
       <div class="column eleven wide ">
+        <h1 class="ui header" style="font-family: 'Sarabun', sans-serif;font-weight:600">เพิ่มผลงานใหม่</h1>
         <div class="row">
-          <h1 class="ui header" style="font-family: 'Sarabun', sans-serif;font-weight:600">เพิ่มผลงานใหม่</h1>
-
-          <select class="ui dropdown" id="newWorksCat">
-            <option value="1_pfoResearch" selected="selected">งานวิจัย</option>
-            <option value="2_pfoPaper">งานที่ได้รับการตีพิมพ์</option>
-            <option value="3_pfoDesign">งานออกแบบ</option>
-            <option value="4_pfoLecturer">วิทยากร</option>
-          </select>
-
-          <div class="ui padded segment" id="pfoResearchForm" style="display:block;">
-            <form class="ui form">
-              <div class="field">
-                <label>ชื่องานวิจัย</label>
-                <input type="text" name="first-name" placeholder="ชื่องานวิจัย">
-              </div>
-              <div class="field">
-                <label>ปีที่ทำโครงการ</label>
-                <input type="text" name="last-name" placeholder="ปีที่ทำโครงการ">
-              </div>
-              <div class="field">
-                <label>รายละเอียดงานวิจัย | <a onclick="insertpopup()"><i class="image icon"></i> เพิ่มรูปภาพ</a></label>
-
-                <textarea name="content" id="editor">
-                    &lt;p&gt;<h2>Here goes the initial</h2><br> content of the editor.&lt;/p&gt;
-                </textarea>
-              </div>
+          <div class="ui basic segment">
+            <form id="newWorkFormID" class="ui form" action="/new-work" method="post" enctype="multipart/form-data">
 
 
 
-          <br/>
-
-
-
-
-
-
-
-
-
-
-
-              <div class="ui modal">
-                <i class="close icon"></i>
-                <div class="header">
-                  Modal Title
-                </div>
-                <div class="image content">
-                  <div class="image">
-                    An image can appear on left or an icon
-                  </div>
-                  <div class="description">
-                    A description can appear on the right
+              <div class="two fields">
+                <div class="field four wide">
+                  <label>ปี</label>
+                  <div class="ui  fluid input">
+                    <input name="pfoYears" id="pfoYears" data-toggle="datepicker" placeholder="ใส่เป็นปี ค.ศ." autocomplete="off">
                   </div>
                 </div>
-                <div class="actions">
-                  <div class="ui button">Cancel</div>
-                  <div class="ui button">OK</div>
+                <div class="field">
+                  <label>ประเภทผลงาน</label>
+                  <select name="pfoCatagoryID" id="pfoCatagoryID" class="ui dropdown">
+                    <option value="โครงการ" selected="selected">โครงการ</option>
+                    <option value="บริการวิชาการ">บริการวิชาการ</option>
+                    <option value="รางวัล">รางวัล</option>
+                    <option value="อื่น ๆ">อื่น ๆ</option>
+                  </select>
                 </div>
               </div>
-              <button class="ui button" type="submit">Submit</button>
-            </form>
-          </div>
 
-          <div class="ui padded segment" id="pfoPaperForm" style="display:none;">
-            <form class="ui form">
-              <div class="field">
-                <label>ชื่อผลงาน</label>
-                <input type="text" name="first-name" placeholder="ชื่อผลงาน">
-              </div>
-              <div class="field">
-                <label>ปีที่ได้รับการตีพิมพ์</label>
-                <input type="text" name="last-name" placeholder="ปีที่ได้รับการตีพิมพ์">
-              </div>
-              <div class="field">
-                <label>สำนักพิมพ์/วารสาร</label>
-                <input type="text" name="last-name" placeholder="สำนักพิมพ์/วารสาร">
-              </div>
-              <div class="field">
-                <label>รายละเอียดผลงาน</label>
-                <textarea></textarea>
-              </div>
-              <button class="ui button" type="submit">Submit</button>
-            </form>
-          </div>
 
-          <div class="ui padded segment" id="pfoDesignForm" style="display:none;">
-            <form class="ui form">
+
               <div class="field">
-                <label>ชื่อผลงาน</label>
-                <input type="text" name="first-name" placeholder="ชื่อผลงาน">
+                <label>ชื่อ</label>
+                <div class="fields">
+                  <div class="sixteen wide field">
+                    <div class="ui  fluid input">
+                      <input name="pfoTitile" id="pfoTitile" type="text" placeholder="ชื่อผลงาน">
+                    </div>
+                  </div>
+
+                </div>
               </div>
-              <div class="field">
-                <label>ว/ด/ป</label>
-                <input type="text" name="last-name" placeholder="ปีที่ได้รับการตีพิมพ์">
-              </div>
+
               <div class="field">
                 <label>รายละเอียด</label>
-                <input type="text" name="last-name" placeholder="สำนักพิมพ์/วารสาร">
-              </div>
-              <div class="field">
-                <label>รูปภาพ</label>
+                <div class="fields">
+                  <div class="sixteen wide field">
+                    <textarea name="pfoDetails" id="pfoDetails">
+                        &lt;p&gt;<h2>ใส่รายละเอียดผลงาน</h2><br> ของคุณที่นี่&lt;/p&gt;
+                    </textarea>
+                  </div>
 
-
-                <div class="ui stackable three column grid">
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
                 </div>
-
-
-
-
-
               </div>
-              <button class="ui button" type="submit">Submit</button>
+
+              <div class=" field">
+                <input name="pfoImage" id="pfoImage" type="file" multiple>
+              </div>
+
+              <div class=" field">
+                <button class="ui button primary" type="submit">เพิ่ม</button>
+              </div>
+              <div class="ui error message"></div>
+              <div class="ui divider" ></div>
             </form>
+
+
+
+
+            <div class=" field">
+              <div class="ui fluid image gallery"></div>
+            </div>
+
+
           </div>
-
-
-          <div class="ui padded segment" id="pfoLecturerForm" style="display:none;">
-            <form class="ui form">
-              <div class="field">
-                <label>ชื่อผลงาน</label>
-                <input type="text" name="first-name" placeholder="ชื่อผลงาน">
-              </div>
-              <div class="field">
-                <label>ว/ด/ป</label>
-                <input type="text" name="last-name" placeholder="ปีที่ได้รับการตีพิมพ์">
-              </div>
-              <div class="field">
-                <label>รายละเอียด</label>
-                <input type="text" name="last-name" placeholder="สำนักพิมพ์/วารสาร">
-              </div>
-              <div class="field">
-                <label>รูปภาพ</label>
-
-
-                <div class="ui stackable three column grid">
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui placeholder">
-                      <div class="image"></div>
-                    </div>
-                  </div>
-                </div>
-
-
-
-
-
-              </div>
-              <button class="ui button" type="submit">Submit</button>
-            </form>
-          </div>
-
-
-
         </div>
+
       </div>
 
 

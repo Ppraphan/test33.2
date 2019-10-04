@@ -2,9 +2,7 @@
 <title>Edit Profile | RMUTT Researcher</title>
 
 <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js" ></script>
-
-
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js" ></script>
 
 
 <script src="js/edit-profile.js"></script>
@@ -13,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700&display=swap" rel="stylesheet">
 
-<script src="js/dropzone.js"></script>
+<script src="js/plugins/dropzone.js"></script>
 
 <body class="thaiheader">
   <% include ../partials/topbar %>
@@ -59,14 +57,12 @@
               </div>
 
               <% include ../pages/edit-profile/uploadImage %>
-
-              <p>คลิกที่ภาพเพื่ออัพโหลด จำกัดขนาดไฟล์สูงสุดที่ 2 MB</p>
               <h4 class="ui dividing header thaiheader">ข้อมูลทั่วไป</h4>
               <div class="field">
                 <label>WIFI ID</label>
                 <div class="fields">
                   <div class="sixteen wide field disabled">
-                    <input type="text" name="" placeholder="1158104620708">
+                    <input type="text" name="" placeholder="<%=userinfo.wifiID%>">
                   </div>
 
                 </div>

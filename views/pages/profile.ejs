@@ -1,16 +1,14 @@
 <% include ../partials/head %>
-<title><%=userinfo.firstname%> <%=userinfo.lastname%> | RMUTT Researcher</title>
+<script src="js/plugins/qr-code.js"></script>
+
+<title><%=userData.firstname%> <%=userData.lastname%> | RMUTT Researcher</title>
 <script>
   $(document).ready(function() {
-    $('.menu .item')
-      .tab();
+    $('.menu .item').tab();
 
     $('.special.cards .image').dimmer({
       on: 'hover'
     });
-
-
-
 
   });
 </script>
@@ -25,14 +23,31 @@
       <div class="column five wide ">
         <div class="row ">
 
-          <img class="ui small centered rounded image" src="./userprofile/<%=userinfo.profilePic%>">
+          <% if (userData.profilePic != '' && userData.profilePic != undefined && userData.profilePic != null) { %>
+          <img class="ui small centered rounded image" src="./userprofile/<%=userData.profilePic%>">
+          <% } else {%>
+          <img class="ui small centered rounded image" src="./userprofile/default-profile.jpg">
+          <% } %>
 
 
-          <h2 class="ui header centered">
-            ประพันธ์ ประทุมวัน
-            <div class="sub header "><%=userinfo.userPosition%></div>
-          </h2>
+          <h1 class="ui header centered">
+            <% if (userData.firstname != '' && userData.firstname != undefined && userData.firstname != null) { %>
+            <%=userData.firstname%> <%=userData.lastname%>
+            <% } else {%>
+            ชื่อ นามสกุล
+            <% } %>
 
+
+
+
+            <% if (userData.userPosition != '' && userData.userPosition != undefined && userData.userPosition != null) { %>
+            <div class="sub header "><%=userData.userPosition%></div>
+            <% } else {%>
+            <div class="sub header ">ไม่ได้ระบุตำแหน่ง</div>
+            <% } %>
+          </h1>
+
+          <% if (userinfo != ' ' && userinfo != undefined && userinfo.id== userData.id) { %>
           <div class="ui basic center aligned  segment">
             <div class="ui basic buttons ">
               <a href="/edit-profile">
@@ -47,37 +62,9 @@
               </a>
             </div>
           </div>
+          <% } %>
 
 
-          <div class="ui basic center aligned  segment">
-            <h2 class="ui sub header centered">Follow me</h2>
-            <div class="ui tiny horizontal divided list ">
-              <div class="item">
-                <a class="ui basic image mini">
-                  <img src="/f_logo_RGB-Blue_58.png">
-                </a>
-              </div>
-
-              <div class="item">
-                <a class="ui basic image mini">
-                  <img src="glyph-logo_May2016.png">
-                </a>
-              </div>
-
-              <div class="item">
-                <a class="ui basic image mini">
-                  <img src="Twitter_Social_Icon_Rounded_Square_Color.png">
-                </a>
-              </div>
-
-              <div class="item">
-                <a class="ui basic image mini ">
-                  <img src="LINE_APP.png">
-                </a>
-              </div>
-
-            </div>
-          </div>
 
 
 
@@ -87,17 +74,29 @@
           <div class="ui label Medium">ที่อยู่ที่ทำงาน</div>
           <div class="ui large   list">
 
+            <% if (userData.userPosition != '' && userData.userPosition != undefined && userData.userPosition != null) { %>
             <div class="item">
               <% for(var i=0; i<workplace.length; i++) {%>
-                <%if (workplace[i].wpID==userinfo.userWpID) { %>
-                  <b><%=workplace[i].wpName%></b>
-                <% } %>
+              <%if (workplace[i].wpID==userData.userWpID) { %>
+              <b><%=workplace[i].wpName%></b>
               <% } %>
-
+              <% } %>
             </div>
+            <% } else {%>
             <div class="item">
-              <%=userinfo.userSubWpName%>
+              <b>ยังไม่ได้ระบุหน่วยงาน</b>
             </div>
+            <% } %>
+
+            <% if (userData.userPosition != '' && userData.userPosition != undefined && userData.userPosition != null) { %>
+            <div class="item">
+              <%=userData.userSubWpName%>
+            </div>
+            <% } else {%>
+            <div class="item">ยังไม่ได้ระบุฝ่ายที่ทำอยู่</div>
+            <% } %>
+
+
           </div>
           <div class="ui divider"></div>
 
@@ -107,13 +106,20 @@
           <div class="ui large list">
             <div class="item">
               <div class="middle aligned content">
-                <i class="phone icon"></i> <%=userinfo.userWorkTel%>
+                <% if (userData.firstname != '' && userData.firstname != undefined && userData.firstname != null) { %>
+                <i class="phone icon"></i> <%=userData.userWorkTel%>
+                <% } else {%>
+                <i class="phone icon"></i> ยังไม่ได้ใส่เบอร์โทร
+                <% } %>
               </div>
-
             </div>
             <div class="item">
               <div class="middle aligned content">
-                <i class="envelope icon"></i> <%=userinfo.userWorkEmail%>
+                <% if (userData.firstname != '' && userData.firstname != undefined && userData.firstname != null) { %>
+                <i class="envelope icon"></i> <%=userData.userWorkEmail%>
+                <% } else {%>
+                <i class="envelope icon"></i> ยังไม่ได้ใส่อีเมล
+                <% } %>
               </div>
             </div>
           </div>
@@ -123,32 +129,79 @@
           <div class="ui label Medium">
             สายงานที่เชี่ยวชาญ
           </div>
-          <div class=" large ui  list">
 
+          <div class=" large ui  list">
             <li>
+              <% if (userData.userExpertiseID != ' ' && userData.userExpertiseID != undefined ) { %>
               <% for(var i=0; i<expertise.length; i++) {%>
-                <%if (expertise[i].expertiseID==userinfo.userExpertiseID) { %>
-                  <b><%=expertise[i].expertiseName%></b>
-                <% } %>
+              <%if (expertise[i].expertiseID==userData.userExpertiseID) { %>
+              <b><%=expertise[i].expertiseName%></b>
+              <% } %>
               <% } %>
               <ul>
+                <% var arrayUserData = userData.userSubExpertiseID %>
+                <% var array = arrayUserData.split(',') %>
+                <% for(var i=0; i<array.length; i++) {%>
 
-                  <% var array = userinfo.userSubExpertiseID.split(',') %>
-                  <% for(var i=0; i<array.length; i++) {%>
-
-                    <% for(var j=0; j<subexpertise.length; j++) {%>
-                      <%if (subexpertise[j].subExpertiseAI_ID==array[i]) { %>
-                        <li><%=subexpertise[j].subExpertiseName%></li>
-                      <% } %>
-                    <% } %>
-
-                  <% } %>
-
+                <% for(var j=0; j<subexpertise.length; j++) {%>
+                <%if (subexpertise[j].subExpertiseAI_ID==array[i]) { %>
+                <li><%=subexpertise[j].subExpertiseName%></li>
+                <% } %>
+                <% } %>
+                <% } %>
+                <% } else {%>
+                <li>ไม่ได้ระบุ</li>
+                <% } %>
               </ul>
             </li>
 
           </div>
 
+
+          <% if (userData.facebook == null  && userData.instagram == null  && userData.twitter == null  && userData.line == null) { %>
+
+          <% } else {%>
+            <div class="ui divider"></div>
+            <div class="ui basic center aligned  segment">
+              <h2 class="ui sub header centered">Other way to contact with me</h2>
+              <div class="ui tiny horizontal divided list ">
+
+                <% if (userData.facebook != ' ' && userData.facebook != undefined ) { %>
+                <div class="item">
+                  <a class="ui basic image mini" href="<%=userData.facebook%>" target="_blank">
+                    <img src="image/brand-img/f_logo_RGB-Blue_58.png">
+                  </a>
+                </div>
+                <% } %>
+
+                <% if (userData.instagram != ' ' && userData.instagram != undefined ) { %>
+                <div class="item">
+                  <a class="ui basic image mini" href="<%=userData.instagram%>" target="_blank">
+                    <img src="image/brand-img/glyph-logo_May2016.png">
+                  </a>
+                </div>
+                <% } %>
+
+                <% if (userData.twitter != ' ' && userData.twitter != undefined ) { %>
+                <div class="item">
+                  <a class="ui basic image mini" href="<%=userData.twitter%>" target="_blank">
+                    <img src="image/brand-img/Twitter_Social_Icon_Rounded_Square_Color.png">
+                  </a>
+                </div>
+                <% } %>
+
+                <% if (userData.line != ' ' && userData.line != undefined ) { %>
+                <div class="item">
+                  <a class="ui basic image mini ">
+                    <img src="image/brand-img/LINE_APP.png">
+                  </a>
+                </div>
+                <% } %>
+
+              </div>
+            </div>
+          <% } %>
+          
         </div>
       </div>
 
@@ -181,5 +234,3 @@
 
   <% include ../partials/footer %>
 </body>
-
-</html>

@@ -117,7 +117,7 @@ module.exports = function(passport, user) {
                   console.log(chalk.red('Email does not exist'));
 
                   var data = {
-                    wifiID: wifiID,
+                    wifiID: req.body.wifiID,
                     firstname: req.body.firstname,
                     lastname: req.body.lastname,
                     profilePic:"default-profile.jpg",

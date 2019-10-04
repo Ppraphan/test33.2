@@ -1,0 +1,42 @@
+.t1{
+  width:450px;
+  height:250px;
+  background-image: url('/bs-cards-template/T1-01.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-family: "Prompt",  serif;
+
+}
+.t1 .t1name{
+  padding:9rem 0em 0em 18px;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: bold;
+  color: #7B7B7D;
+}
+
+.t1 .t1SubWpName{
+  margin-top: -5px;
+  padding:0rem 0em 0em 18px;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: normal;
+  color: #7B7B7D;
+}
+
+.t1 .linelogo{
+  width:20px;
+
+}
+
+
+.t1 .qrcode{
+  width:80px;
+  height:80px;
+  position: absolute;
+  left:350px;
+  top:220px;
+  border: 2px solid #D3D3D3;
+
+}

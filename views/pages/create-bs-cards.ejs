@@ -1,0 +1,147 @@
+<% include ../partials/head %>
+<title>สร้างนามบัตร | RMUTT Researcher</title>
+
+
+
+
+<!-- <script src="js/edit-profile.js"></script> -->
+<link href="css/create-bs-card.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Prompt&display=swap" rel="stylesheet">
+
+<script src="js/plugins/qr-code.js"></script>
+
+<script src="js/plugins/html2canvas.js"></script>
+
+<body class="thaiheader">
+  <% include ../partials/topbar %>
+
+  <div class="ui  container" style="padding:54px 0rem 0rem 0rem;">
+    <!-- height:calc(100vh - 283.7px) -->
+
+    <div class="ui stackable two column grid container" style="padding:5rem 0rem 5rem 0rem">
+      <div class="column five wide">
+        <div class="ui horizontal statistics">
+
+          <div class="statistic">
+            <div class="value">
+              1
+            </div>
+            <div class="label">
+              เลือกเทมเพลตที่ต้องการด้านล่าง
+            </div>
+          </div>
+
+        </div>
+        <div class="column wide" style="overflow:auto;height:400px">
+
+          <div class="ui raised link card">
+            <a class="image" href="#">
+              <img class="ui  image" src="bs-cards-template/T1-01.jpg">
+            </a>
+          </div>
+
+          <div class="ui raised link card">
+            <a class="image" href="#">
+              <img class="ui  image" src="bs-cards-template/nut-02.jpg">
+            </a>
+          </div>
+
+          <div class="ui raised link card">
+            <a class="image" href="#">
+              <img class="ui  image" src="bs-cards-template/Untitled-1.jpg">
+            </a>
+          </div>
+
+          <div class="ui raised link card">
+            <a class="image" href="#">
+              <img class="ui  image" src="bs-cards-template/Untitled-2.1.jpg">
+            </a>
+          </div>
+
+          <div class="ui raised link card">
+            <a class="image" href="#">
+              <img class="ui  image" src="bs-cards-template/Untitled-2.jpg">
+            </a>
+          </div>
+
+          <div class="ui raised link card">
+            <a class="image" href="#">
+              <img class="ui  image" src="bs-cards-template/Web 1920 – 2.png">
+            </a>
+          </div>
+
+
+
+
+
+
+        </div>
+      </div>
+
+      <div class="column eleven wide ">
+
+        <div class="row">
+          <div class="ui horizontal statistics">
+
+            <div class="statistic">
+              <div class="value">
+                2
+              </div>
+              <div class="label">
+                ดาวน์โหลด
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+        <script>
+        $(document).ready(function() {
+          document.getElementById("data").value = "https://www.google.co.th/";
+          var data = $('#data').val();
+          $('#qrcode').qrcode(data);
+        //   var createQRCode = function(){
+        //   var data = $('#data').val();
+        //   $('#qrcode').empty();
+        //   $('#qrcode').qrcode(data);
+          // $('#qrcode').append('</br><strong style="color:red">'+data+'</strong>');
+        // };
+
+        $('#data').keyup(createQRCode);
+        $('#data').change(createQRCode);
+
+        });
+        </script>
+        <div class="row">
+          <input id="data" type="hidden" value="">
+          <div class="t1">
+            <p class="t1name"><%=userinfo.firstname%> <%=userinfo.lastname%></p>
+            <p class="t1SubWpName"><%=userinfo.userSubWpName%> </p>
+            <p class="t1SubWpName"><i class="phone icon"></i> <%=userinfo.userWorkTel%></p>
+
+            <p class="t1SubWpName"><img class="linelogo" align="middle" src="/image/brand-img/LINE_APP.png"> <%=userinfo.line%></p>
+
+
+            <div id="qrcode" class="qrcode"> </div>
+          </div>
+          <div class="ui divider"></div>
+          <button class="fluid ui primary button">ดาวน์โหลด</button>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+  </div>
+
+  <% include ../partials/footer %>
+</body>
+
+</html>

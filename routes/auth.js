@@ -72,19 +72,7 @@ module.exports = function(app, passport) {
     session: false,
   }));
 
-  app.get("/signup/getDpment/:catdata", function(req, res) {
-    var catdata = req.params.catdata;
 
-    console.log(catdata);
-
-    var sql = "SELECT Sub_Dpment_name FROM project.sub_dpment where Sub_Dpment_Parent ='" + req.params.catdata + "'";
-    console.log(sql);
-    con.query(sql, function(err, rows) {
-      console.log(rows);
-      if (err) throw err;
-      res.send(rows);
-    });
-  });
 
   app.get('/signin', authController.signin);
 
@@ -93,10 +81,10 @@ module.exports = function(app, passport) {
     var message = req.query.message;
     var userinfo = req.user;
 
-    var sql = "SELECT profilePic,firstname,lastname,userPosition,userWpID,userSubWpName FROM project.users limit 0, 10;"+
-    "SELECT * FROM project.expertise  order by expertiseName;"+
-    "SELECT * FROM project.workplace order by wpName;"+
-    "SELECT count(*)as countUsers FROM project.users;";
+    var sql = "SELECT id,profilePic,firstname,lastname,userPosition,userWpID,userSubWpName FROM project.users limit 0, 10;" +
+      "SELECT * FROM project.expertise  order by expertiseName;" +
+      "SELECT * FROM project.workplace order by wpName;" +
+      "SELECT count(*)as countUsers FROM project.users;";
 
     con.query(sql, function(err, results) {
       if (err) console.log("Error Selecting : %s ", err);
@@ -104,10 +92,12 @@ module.exports = function(app, passport) {
       res.render('pages/index', {
         message: message,
         userinfo: userinfo,
-        data:results[0],
-        expertise:results[1],
-        workplace:results[2],
-        countUsers:results[3],
+
+        data: results[0],
+
+        expertise: results[1],
+        workplace: results[2],
+        countUsers: results[3],
       });
     });
 
@@ -120,6 +110,13 @@ module.exports = function(app, passport) {
     failureRedirect: '/signin'
   }));
 
+  app.all('*', function(req, res, next) {
+    if (req.path === '/' || req.path === '/login' || req.path === '/forgot-password' || req.originalUrl.split("/")[1] === 'profile'|| req.originalUrl.split("/")[1] === 'getuserdata')
+      next();
+    else
+      isLoggedIn(req, res, next);
+  });
+
   function movefile(req, res, next) {}
 
   function isLoggedIn(req, res, next) {
@@ -128,12 +125,7 @@ module.exports = function(app, passport) {
     res.redirect('/signin');
   }
 
-  app.all('*', function(req, res, next) {
-    if (req.path === '/' || req.path === '/login'|| req.path === '/forgot-password')
-      next();
-    else
-      isLoggedIn(req, res, next);
-  });
+
 
   function requireRole(role) {
     return function(req, res, next) {
@@ -145,14 +137,5 @@ module.exports = function(app, passport) {
     }
   }
 
-  //
-  // app.get("/foo/:id", requireRole("user"), foo.show);
-  // app.post("/foo", requireRole("admin"), foo.create);
-  //
-  // // All bars are protected
-  // app.all("/foo/bar", requireRole("admin"));
-  //
-  // // All paths starting with "/foo/bar/" are protected
-  // app.all("/foo/bar/*", requireRole("user"));
 
 }

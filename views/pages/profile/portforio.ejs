@@ -1,5 +1,5 @@
 <div class="ui  secondary menu " style="font-family: 'Prompt', sans-serif;font-weight:200">
-  <a class="active item" data-tab="aa">โครงการ</a>
+<a class="active item" data-tab="aa">โครงการ</a>
   <a class="item" data-tab="ab">บริการวิชาการ</a>
   <a class="item" data-tab="ac">รางวัล</a>
   <a class="item" data-tab="ad">อื่น ๆ</a>
@@ -7,263 +7,93 @@
 
 
 <div class="ui active tab basic segment" data-tab="aa">
-  <div class="ui link card">
-    <div class="content">
-      <div class="header">Cute Dog</div>
-      <div class="meta">
-        <span class="category">Animals</span>
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters</p>
-      </div>
+  <div class="ui horizontal teal statistic tiny ">
+    <div class="label">
+      กำลังแสดง
     </div>
-    <div class="extra content">
-      <div class="right floated author">
-        <a href="/portforio"><i class="linkify icon"></i> Read more</a>
-      </div>
+    <div class="value ">
+      5
+    </div>
+    <div class="label">
+      จาก
+    </div>
+    <div class="value">
+      204
     </div>
   </div>
-  <div class="ui link card">
+
+
+  <% if(portfolioDataType1.length){
+    for(var i = 0;i < portfolioDataType1.length;i++) {
+       if(portfolioDataType1[i].pfoCatagoryID == 'โครงการ'){ %>
+  <a class="ui link card" href="#">
     <div class="content">
-      <div class="header">Cute Dog</div>
-      <span class="category">Animals</span>
+      <div class="header"><%=portfolioDataType1[i].pfoTitile%></div>
       <div class="meta">
+        <span class="category"><%=portfolioDataType1[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType1[i].pfoYears%></span>
       </div>
       <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters</p>
+        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, typically consisting of alphabetic and numeric characters</p>
       </div>
     </div>
-    <div class="extra content">
-      <div class="right floated author">
-        <i class="images icon"></i> view gallery
-      </div>
-    </div>
-  </div>
-  <div class="ui link card">
-    <div class="content">
-      <div class="header">Cute Dog</div>
-      <div class="meta">
-        <span class="category">Animals</span>
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters</p>
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="right floated author">
-        <i class="images icon"></i> view gallery
-      </div>
-    </div>
-  </div>
-  <div class="ui link card">
-    <div class="content">
-      <div class="header">Cute Dog</div>
-      <div class="meta">
-        <span class="category">Animals</span>
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters</p>
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="right floated author">
-        <i class="images icon"></i> view gallery
-      </div>
-    </div>
-  </div>
-  <div class="ui link card">
-    <div class="content">
-      <div class="header">Cute Dog</div>
-      <div class="meta">
-        <span class="category">Animals</span>
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters</p>
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="right floated author">
-        <i class="images icon"></i> view gallery
-      </div>
-    </div>
-  </div>
+
+  </a>
+  <% }
+  }
+  }else{ %>
+  ยังไม่มีข้อมูลในส่วนนี้
+  <% } %>
+
 
 
   <button class="fluid ui button">Load more</button>
 </div>
 
 <div class="ui tab basic segment" data-tab="ab">
-  <div class="ui link card">
+
+  <% if(portfolioDataType2.length){
+    for(var i = 0;i < portfolioDataType2.length;i++) {
+       if(portfolioDataType2[i].pfoCatagoryID == 'บริการวิชาการ'){ %>
+  <a class="ui link card" href="#">
     <div class="content">
-      <div class="header">Cute Dog</div>
+      <div class="header"><%=portfolioDataType2[i].pfoTitile%></div>
       <div class="meta">
-        <span class="category">Animals</span>
+        <span class="category"><%=portfolioDataType2[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType2[i].pfoYears%></span>
       </div>
       <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters</p>
+        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, typically consisting of alphabetic and numeric characters</p>
       </div>
     </div>
-    <div class="extra content">
-      <div class="right floated author">
-        <a href="/portforio"><i class="linkify icon"></i> Read more</a>
-      </div>
-    </div>
-  </div>
-  <div class="ui link card">
-    <div class="content">
-      <div class="header">Cute Dog</div>
-      <span class="category">Animals</span>
-      <div class="meta">
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters</p>
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="right floated author">
-        <i class="images icon"></i> view gallery
-      </div>
-    </div>
-  </div>
-  <div class="ui link card">
-    <div class="content">
-      <div class="header">Cute Dog</div>
-      <div class="meta">
-        <span class="category">Animals</span>
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters</p>
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="right floated author">
-        <i class="images icon"></i> view gallery
-      </div>
-    </div>
-  </div>
-  <div class="ui link card">
-    <div class="content">
-      <div class="header">Cute Dog</div>
-      <div class="meta">
-        <span class="category">Animals</span>
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters</p>
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="right floated author">
-        <i class="images icon"></i> view gallery
-      </div>
-    </div>
-  </div>
-  <div class="ui link card">
-    <div class="content">
-      <div class="header">Cute Dog</div>
-      <div class="meta">
-        <span class="category">Animals</span>
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters</p>
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="right floated author">
-        <i class="images icon"></i> view gallery
-      </div>
-    </div>
-  </div>
+
+  </a>
+  <% }
+  }
+  }else{ %>
+  ยังไม่มีข้อมูลในส่วนนี้
+  <% } %>
+
 
 </div>
 
 <div class="ui tab basic segment" data-tab="ac">
 
-  <div class="ui unstackable divided items">
-    <div class="item">
-      <div class="image">
-        <img src="https://semantic-ui.com/images/wireframe/image.png">
-      </div>
+  <div class="ui  divided items">
+
+    <a class="ui raised card" href="#">
       <div class="content">
-        <a class="header">Header</a>
-        <div class="meta">
-          <span>Description</span>
-        </div>
-        <div class="description">
-          <p></p>
-        </div>
-        <div class="extra">
-          Additional Details
+        <div class="center aligned header">Jenny Hess</div>
+        <div class="center aligned description">
+          <p>Jenny is a student studying Media Management at the New School</p>
         </div>
       </div>
-    </div>
-    <div class="item">
-      <div class="image">
-        <img src="https://semantic-ui.com/images/wireframe/image.png">
-      </div>
-      <div class="content">
-        <a class="header">Header</a>
-        <div class="meta">
-          <span>Description</span>
-        </div>
-        <div class="description">
-          <p></p>
-        </div>
-        <div class="extra">
-          Additional Details
+      <div class="extra content">
+        <div class="center aligned author">
+          <i class="trophy icon"></i> Jenny
         </div>
       </div>
-    </div>
-    <div class="item">
-      <div class="image">
-        <img src="https://semantic-ui.com/images/wireframe/image.png">
-      </div>
-      <div class="content">
-        <a class="header">Header</a>
-        <div class="meta">
-          <span>Description</span>
-        </div>
-        <div class="description">
-          <p></p>
-        </div>
-        <div class="extra">
-          Additional Details
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="image">
-        <img src="https://semantic-ui.com/images/wireframe/image.png">
-      </div>
-      <div class="content">
-        <a class="header">Header</a>
-        <div class="meta">
-          <span>Description</span>
-        </div>
-        <div class="description">
-          <p></p>
-        </div>
-        <div class="extra">
-          Additional Details
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="image">
-        <img src="https://semantic-ui.com/images/wireframe/image.png">
-      </div>
-      <div class="content">
-        <a class="header">Header</a>
-        <div class="meta">
-          <span>Description</span>
-        </div>
-        <div class="description">
-          <p></p>
-        </div>
-        <div class="extra">
-          Additional Details
-        </div>
-      </div>
-    </div>
+    </a>
+
+
   </div>
 
 </div>
@@ -271,40 +101,26 @@
 <div class="ui tab basic  segment" data-tab="ad">
 
   <div class="ui unstackable divided items">
-    <div class="item">
-      <div class="image">
-        <img src="https://semantic-ui.com/images/wireframe/image.png">
-      </div>
+    <% if(portfolioDataType2.length){
+      for(var i = 0;i < portfolioDataType2.length;i++) {
+         if(portfolioDataType2[i].pfoCatagoryID == 'บริการวิชาการ'){ %>
+    <a class="ui link card" href="#">
       <div class="content">
-        <a class="header">Header</a>
+        <div class="header"><%=portfolioDataType2[i].pfoTitile%></div>
         <div class="meta">
-          <span>Description</span>
+          <span class="category"><%=portfolioDataType2[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType2[i].pfoYears%></span>
         </div>
         <div class="description">
-          <p></p>
-        </div>
-        <div class="extra">
-          Additional Details
+          <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, typically consisting of alphabetic and numeric characters</p>
         </div>
       </div>
-    </div>
-    <div class="item">
-      <div class="image">
-        <img src="https://semantic-ui.com/images/wireframe/image.png">
-      </div>
-      <div class="content">
-        <a class="header">Header</a>
-        <div class="meta">
-          <span>Description</span>
-        </div>
-        <div class="description">
-          <p></p>
-        </div>
-        <div class="extra">
-          Additional Details
-        </div>
-      </div>
-    </div>
+
+    </a>
+    <% }
+    }
+    }else{ %>
+    ยังไม่มีข้อมูลในส่วนนี้
+    <% } %>
   </div>
 
 

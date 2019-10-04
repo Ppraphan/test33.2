@@ -94,19 +94,11 @@ require('./routes/editCareerHistory.js')(app);
 require('./routes/editEducationHistory.js')(app);
 
 //กลุ่มผลงาน
-app.get('/all-works', function(req, res) {
-  var userinfo = req.user;
-  res.render('pages/all-works', {
-    userinfo: userinfo,
-  });
-});
+require('./routes/allWork.js')(app);
 
-app.get('/new-work', function(req, res) {
-  var userinfo = req.user;
-  res.render('pages/new-work', {
-    userinfo: userinfo,
-  });
-});
+//กลุ่มเกี่ยวกับโครงการ
+require('./routes/aboutSystem.js')(app);
+
 
 app.get('/portforio', function(req, res) {
   var userinfo = req.user;

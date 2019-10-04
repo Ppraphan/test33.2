@@ -1,18 +1,71 @@
 var con = require('./connect-db.js'); /*เชื่อมต่อฐานข้อมูล*/
 var bodyParser = require('body-parser');
 
+
 module.exports = function(app) {
+
+  app.get('/profile/:id', function(req, res) {
+
+    var message = req.query.message;
+    var userinfo = req.user;
+
+    var fullid = req.params.id;
+
+    var shortid = parseInt(fullid.split("-", 1));
+
+
+    var sql0 = "SELECT userExpertiseID FROM project.users where id = " + shortid + ";"
+    con.query(sql0, function(err, results) {
+      console.log("sql0");
+      if (err) console.log("Error Selecting : %s ", err);
+
+
+
+      var sql = "SELECT * FROM project.expertise order by expertiseName;" +
+        "SELECT * FROM project.subexpertise where subExpertiseID=" + results[0].userExpertiseID + " order by subExpertiseName;" +
+        "SELECT * FROM project.workplace;" +
+        "SELECT * FROM project.educationhistory where ehUserAI_ID = " + shortid + " order by ehGraduateYear DESC;" +
+        "SELECT * FROM project.careerhistory where chUserAI_ID = " + shortid + " order by chEntYear DESC; "+
+        "SELECT * FROM project.users  where id = " + shortid + ";"+
+        "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'โครงการ' order by pfoYears DESC limit 0, 5;"+
+        "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'บริการวิชาการ' order by pfoYears DESC limit 0, 5;";
+
+      con.query(sql, function(err, results) {
+
+        if (err) console.log("Error Selecting : %s ", err);
+
+        res.render('pages/profile', {
+          message: message,
+          userinfo: userinfo,
+
+          expertise: results[0],
+          subexpertise: results[1],
+          workplace: results[2],
+          educateData: results[3],
+          expData: results[4],
+
+          userData: results[5][0],
+
+          portfolioDataType1: results[6],
+          portfolioDataType2: results[7],
+        });
+
+      });
+
+    });
+
+  });
 
   app.get('/profile', function(req, res) {
     var message = req.query.message;
     var userinfo = req.user;
     var userinfoexpert = req.user.userExpertiseID;
 
-    var sql = "SELECT * FROM project.expertise order by expertiseName;"+
-    "SELECT * FROM project.subexpertise  where subExpertiseID=" + userinfoexpert + " order by subExpertiseName;"+
-    "SELECT * FROM project.workplace;"+
-    "SELECT * FROM project.educationhistory where ehUserAI_ID = " + req.user.id + " order by ehGraduateYear DESC;"+
-    "SELECT * FROM project.careerhistory where chUserAI_ID = " + req.user.id + " order by chEntYear DESC; ";
+    var sql = "SELECT * FROM project.expertise order by expertiseName;" +
+      "SELECT * FROM project.subexpertise  where subExpertiseID=" + userinfoexpert + " order by subExpertiseName;" +
+      "SELECT * FROM project.workplace;" +
+      "SELECT * FROM project.educationhistory where ehUserAI_ID = " + req.user.id + " order by ehGraduateYear DESC;" +
+      "SELECT * FROM project.careerhistory where chUserAI_ID = " + req.user.id + " order by chEntYear DESC; ";
 
     con.query(sql, function(err, results) {
       if (err) console.log("Error Selecting : %s ", err);
@@ -71,7 +124,7 @@ module.exports = function(app) {
 
 
     if (userinfoexpert == '' || userinfoexpert == null || userinfoexpert == undefined) {
-      var sql = "SELECT * FROM project.expertise order by expertiseName;";
+      var sql = "SELECT * FROM project.expertise order by expertiseName; ";
       con.query(sql, function(err, results) {
         if (err) console.log("Error Selecting : %s ", err);
 
@@ -84,6 +137,7 @@ module.exports = function(app) {
 
       });
     }
+
     if (userinfoexpert >= 0) {
       var sql = "SELECT * FROM project.expertise order by expertiseName;SELECT * FROM project.subexpertise  where subExpertiseID=" +
         userinfoexpert + " order by subExpertiseName  ";
@@ -107,9 +161,23 @@ module.exports = function(app) {
 
   });
 
+  app.get('/create-bs-cards', function(req, res) {
+    var message = req.query.message;
+    var userinfo = req.user;
 
 
 
+
+      res.render('pages/create-bs-cards', {
+        message: message,
+        userinfo: userinfo,
+
+
+      });
+
+
+
+  });
 
 
 
@@ -229,7 +297,7 @@ module.exports = function(app) {
     var userinfo = req.user;
     var beginshow = req.query.beginshow;
 
-    var sql = "SELECT profilePic,firstname,lastname,userPosition,userWpID FROM project.users orders  limit " + beginshow + ",10;"
+    var sql = "SELECT id,profilePic,firstname,lastname,userPosition,userSubWpName FROM project.users orders  limit " + beginshow + ",10;"
 
     con.query(sql, function(err, results) {
       console.log(sql);

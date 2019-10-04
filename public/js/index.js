@@ -1,16 +1,15 @@
 $(document).ready(function() {
   $('.ui.sticky').sticky({
-      offset: 70,
-      context: '#example1',
-      pushing: true,
+    offset: 70,
+    context: '#example1',
+    pushing: true,
 
-    });
+  });
 
   $('.ui.dropdown').dropdown();
   $('.ui.checkbox').checkbox();
 
-  $('.ui.accordion')
-    .accordion();
+  $('.ui.accordion').accordion();
 });
 
 $(document).ready(function() {
@@ -78,53 +77,57 @@ $(function() {
 
 
 
-// var beginshow = 10;
-// var lastshow = 20;
-// var previous;
-//
-// function loadmoreuser() {
-//
-//   document.getElementById("Neighbor2").classList.add("loading");
-//
-//   $.ajax({
-//     type: 'GET',
-//     url: '/getuserdata/?beginshow=' + beginshow,
-//     dataType: 'json',
-//     success: function(data) {
-//       /* Adds Element AFTER NeighborElement */
-//       Element.prototype.appendAfter = function(element) {
-//         element.parentNode.insertBefore(this, element.nextSibling);
-//       }, false;
-//
-//       /* Typical Creation and Setup A New Orphaned Element Object */
-//       var newElement = document.createElement('div');
-//       newElement.innerHTML = 'New Element';
-//
-//       /*  Add NewElement BEFORE -OR- AFTER Using the Aforementioned Prototypes */
-//       // newElement.appendAfter(document.getElementById('Neighbor2'));
-//
-//       // newElement.insertBefore("#Neighbor2");
-//
-//
-//       for (var i = 0; i < data.length; i++) {
-//         $("#allResearcher").append('<div class="card" id=""><div class="image"><img src="./userprofile/' + data[i].profilePic + '" ></div><div class="content"><div class="ui small header">' + data[i].firstname + ' ' + data[i].lastname +
-//           '</div><div class="meta"><a>' + data[i].userPermission + '</a></div></div><div class="extra content"><span><i class="map marker alternate icon"></i>' + data[i].university + '</span></div></div>');
-//       }
-//
-//     }
-//   });
-//
-//
-//   beginshow = beginshow + 10;
-//   document.getElementById("countNowShow").innerHTML = beginshow;
-//   document.getElementById("Neighbor2").classList.remove("loading");
-// };
+$(function() {
+  $('html,body').animate({
+    scrollTop: 0
+  }, 'slow');
+
+});
+var timeout;
+
+$(window).scroll(function() {
+  clearTimeout(timeout);
+  timeout = setTimeout(function() {
+    var previousScroll = 0;
+    var countscroll = 0;
+
+    var beginshow = $('#countCurrentUsers').val();
+    beginshow = parseInt(beginshow);
+    var allshow = $('#countAllUsers').val();
+    allshow = parseInt(allshow);
+
+    var listElm = document.querySelector('#allResearcher');
+    var scrollBottom = $(window).scrollTop() + $(window).height();
+
+    var currentScroll = $(this).scrollTop();
+    if (currentScroll > previousScroll) {
+      if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+
+        // alert("bottom");
+        if (beginshow <= allshow) {
+          $('#countCurrentUsers').val(beginshow + 10);
+          document.getElementById("nowShow").innerHTML = beginshow + 10;
+          loadMore(beginshow);
+          // alert("sald");
+
+
+        }
 
 
 
+      }
 
-function loadMore(beginshow){
-  var beginshow=beginshow;
+
+
+    }
+    previousScroll = currentScroll;
+
+  }, 50);
+
+});
+
+function loadMore(beginshow) {
+  var beginshow = beginshow;
   $.ajax({
     type: 'GET',
     url: '/getuserdata/?beginshow=' + beginshow,
@@ -135,61 +138,30 @@ function loadMore(beginshow){
       var nextItem = 1;
 
 
-  for (var i = 0; i < 5; i++) {
-    $("#allResearcher").append('<div class="card" id="">\
-      <div class="image">\
-        <img src="" >\
-      </div>\
-      <div class="content">\
-        <div class="ui small header"></div>\
-        <div class="meta"></div>\
-      </div>\
-      <div class="extra content">\
-        <span>\
-          <i class="map marker alternate icon"></i>\
-        </span>\
-      </div>\
-    </div>');
-  }
-  $('.ui.sticky').sticky('refresh')
-  ;
+      for (var i = 0; i < data.length; i++) {
+        if (data[i] != ' ' && data[i] != undefined && data[i] != null) {
+          $("#allResearcher").append('<a class="ui card" id="" href="/profile/' + data[i].id + '-' + data[i].firstname + '-' + data[i].lastname + '" target="_self">' +
+            '<div class="image">' +
+            '<img src="./userprofile/' + data[i].profilePic + '" >' +
+            '</div>' +
+            '<div class="content">' +
+            '<div class="ui small header">' + data[i].firstname + '  ' + data[i].lastname +
+            '<div class="meta">' + data[i].userPosition +
+            '</div>' +
+            '</div>' +
+            '<div class="extra content">' +
+            '<span><i class="map marker alternate icon"></i>' + data[i].userSubWpName +
+            '</span>' +
+            '</div>' +
+            '</div>' +
+            '</a>');
+        }
 
 
+      }
+
+      $('.ui.sticky').sticky('refresh');
 
     }
   });
 }
-
-
-$(function() {
-  var beginshow = 10;
-  var listElm = document.querySelector('#allResearcher');
-  var scrollBottom = $(window).scrollTop() + $(window).height();
-
-  var previousScroll = 0;
-  var countscroll = 0;
-
-  $('html,body').animate({
-    scrollTop: 0
-  }, 'slow');
-  $(window).scroll(function() {
-    var currentScroll = $(this).scrollTop();
-    if (currentScroll > previousScroll) {
-      if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        // alert("bottom");
-        if(beginshow<=70){
-        loadMore(beginshow);
-        beginshow=beginshow+10;
-        }
-      }
-
-
-
-    }
-    previousScroll = currentScroll;
-  });
-
-  // Initially load some items.
-  // loadMore();
-
-});

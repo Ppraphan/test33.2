@@ -45,7 +45,7 @@ module.exports = function(app) {
     });
 
   });
-  
+
   /*ดูข้อมูลส่วนตัว-ของผู้ใช้*/
   app.get('/user/:id',role.requireRole("admin"), function(req, res) {
     var userinfo = req.user;
@@ -336,67 +336,5 @@ module.exports = function(app) {
   });
 
 
-  // ขอข้อมูลหน่วยงาน
-  app.get("/me/getUniversityName/", function(req, res) {
-    var catdata = req.query.countryData;
-    console.log("catdata : " + catdata);
-    var sql = "SELECT * FROM project.university where countryISOCode = '" + catdata + "' ;";
-
-    con.query(sql, function(err, results) {
-      if (err) throw err;
-
-      res.send(results);
-    });
-  });
-  app.get("/me/getFacultyinUni/", function(req, res) {
-    var catdata = req.query.universityData;
-    console.log(catdata);
-
-    var sql = "SELECT * FROM project.faculty where uniID ='" + catdata + "';SELECT * FROM project.university,project.faculty,project.department,project.sub_dpment WHERE project.university.uniID = project.faculty.uniID AND project.faculty.facultyID = project.department.facultyID AND project.department.departmentID = project.sub_dpment.Sub_Dpment_Parent AND project.university.uniID=  '" + catdata + "'  AND project.faculty.facultyName= '-';  ";
-
-    con.query(sql, function(err, results) {
-      console.log(results);
-      if (err) throw err;
-      var data = {
-        data0: results[0],
-        data1: results[1]
-      }
-
-      res.send(data);
-    });
-
-  });
-  app.get("/me/getDpmentinFac/", function(req, res) {
-    var catdata = req.query.facultyValue;
-    console.log(catdata);
-
-    var sql = "SELECT * FROM project.department where facultyID ='" + catdata + "';SELECT * FROM project.faculty,project.department,project.sub_dpment WHERE  project.faculty.facultyID = project.department.facultyID AND project.department.departmentID = project.sub_dpment.Sub_Dpment_Parent AND project.faculty.facultyID= '" + catdata + "' AND project.department.departmentName='-';  ";
-    console.log(sql);
-    con.query(sql, function(err, results) {
-      if (err) throw err;
-      var data = {
-        data0: results[0],
-        data1: results[1]
-      }
-
-      res.send(data);
-    });
-  });
-  app.get("/me/getSubinDpment/", function(req, res) {
-    var catdata = req.query.departmentValue;
-    console.log(catdata);
-
-    var sql = "SELECT * FROM project.sub_dpment where Sub_Dpment_Parent ='" + catdata + "';SELECT * FROM project.department,project.sub_dpment WHERE   project.department.departmentID = project.sub_dpment.Sub_Dpment_Parent AND project.department.departmentID='" + catdata + "' AND project.sub_dpment.Sub_Dpment_name='-';   ";
-    console.log(sql);
-    con.query(sql, function(err, results) {
-      if (err) throw err;
-      var data = {
-        data0: results[0],
-        data1: results[1]
-      }
-
-      res.send(data);
-    });
-  });
 
 }

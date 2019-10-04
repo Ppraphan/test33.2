@@ -1,4 +1,3 @@
-
 <div class="ui modal">
 
   <i class="close icon"></i>
@@ -9,6 +8,12 @@
     <div class="ui two column stackable center aligned grid">
       <div class="ui vertical divider">-></div>
       <div class="middle aligned row">
+        <div class="ui stackable four column grid">
+          <div class="column"></div>
+          <div class="column"></div>``
+          <div class="column"></div>
+          <div class="column"></div>
+        </div>
         <div class="column">
           <div>
             <canvas id="canvas" class="image">
@@ -19,8 +24,8 @@
             <input class="" type="file" id="fileInput" accept="image/*" />
             <div class="ui  buttons">
 
-              <input class="ui button primary" type="button " id="btnCrop" value="ครอบ" />
-              <input class="ui button" type="button" id="btnRestore" value="คืนค่า" />
+              <button class="ui button primary" type="button" id="btnCrop">ครอบ</button>
+              <button class="ui button" type="button" id="btnRestore">คืนค่า</button>
             </div>
 
           </div>
@@ -29,6 +34,7 @@
           <img id="result">
         </div>
       </div>
+
     </div>
   </div>
 

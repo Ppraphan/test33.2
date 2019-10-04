@@ -1,10 +1,22 @@
 <% include ../partials/head %>
+<title>ผลงานทั้งหมดของฉัน | RMUTT Researcher</title>
+
 <script>
   $(document).ready(function() {
-    $('#example').DataTable();
+    var table = $('#myPFOTable').DataTable();
+
+    table.on('order.dt search.dt', function() {
+      table.column(0, {
+        search: 'applied',
+        order: 'applied'
+      }).nodes().each(function(cell, i) {
+        cell.innerHTML = i + 1;
+      });
+    }).draw();
   });
 </script>
-<script src="js/edit-profile.js"></script>
+<script src="js/new-work.js"></script>
+
 <link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700&display=swap" rel="stylesheet">
 
@@ -20,7 +32,7 @@
 
 <body class="thaiheader">
   <% include ../partials/topbar %>
-
+<% include ../partials/flash %>
   <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;">
 
     <div class="ui grid">
@@ -38,7 +50,7 @@
       </div>
     </div>
 
-    <div class="ui stackable two column grid container contentbody">
+    <div class="ui stackable two column grid container contentbody" style="min-height:55vh;">
 
       <div class="column five wide">
 
@@ -50,14 +62,48 @@
         <div class="row">
           <h1 class="ui header" style="font-family: 'Sarabun', sans-serif;font-weight:600">ผลงานทั้งหมดของฉัน</h1>
           <div class="ui basic segment">
-            <% include ../pages/datatable %>
-    
 
+            <table id="myPFOTable" class="ui  table " style="width:100%">
+              <thead>
+                <tr>
+                  <th>ลำดับ</th>
+                  <th>ชื่อผลงาน</th>
+                  <th>ประเภท</th>
+                  <th>ปี</th>
+                  <th></th>
+                </tr>
+              </thead>
 
+              <tbody>
+                <% if(portdata.length){
+                  for(var i = 0;i < portdata.length;i++) { %>
+                <tr class=" ">
+                  <td></td>
 
+                  <td>
+                    <%=portdata[i].pfoTitile%>
+                  </td>
 
+                  <td>
+                    <%=portdata[i].pfoCatagoryID%>
+                  </td>
 
+                  <td>
+                    <%=portdata[i].pfoYears%>
+                  </td>
+                  <td>
+                    <a onclick="return confirm('คุณต้องการที่จะ ลบหรือไม่ ?');" href="/all-works/delete/<%=portdata[i].pfoID%>"><i class="trash icon"></i></a>
+                  </td>
 
+                </tr>
+                <% }
+                }else{ %>
+                <tr>
+                  <td colspan="5">No data</td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
 
           </div>
 

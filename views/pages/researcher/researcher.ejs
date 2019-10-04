@@ -1,24 +1,25 @@
-
-  <% if(data.length){
+<% if(data.length){
     for(var i = 0;i < data.length;i++) { %>
-  <div class="card" id="">
-    <div class="image">
-      <img src="./userprofile/<%=data[i].profilePic%>" >
-    </div>
-    <div class="content">
-      <div class="ui small header"><%=data[i].firstname%>  <%=data[i].lastname%></div>
-      <div class="meta">
-        <%=data[i].userPosition%>
-      </div>
-    </div>
-    <div class="extra content">
-      <span>
-        <i class="map marker alternate icon"></i>
-        <%=data[i].userSubWpName%>
-      </span>
+
+<a class="ui card" href="/profile/<%=data[i].id%>-<%=data[i].firstname%>-<%=data[i].lastname%>" target="_self">
+  <div class="image">
+    <img src="./userprofile/<%=data[i].profilePic%>">
+  </div>
+  <div class="content">
+    <div class="ui small header"><%=data[i].firstname%> <%=data[i].lastname%></div>
+    <div class="meta">
+      <%=data[i].userPosition%>
     </div>
   </div>
-  <% }
+  <div class="extra content">
+    <span>
+      <i class="map marker alternate icon"></i>
+      <%=data[i].userSubWpName%>
+    </span>
+  </div>
+</a>
+
+<% }
   }else{ %>
 
 <% } %>

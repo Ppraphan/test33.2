@@ -1,7 +1,7 @@
 <% include ../partials/head %>
 
 <script src="js/edit-expertise.js"></script>
-<script src="js/ckeditor.js"></script>
+<script src="js/plugins/ckeditor.js"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700&display=swap" rel="stylesheet">
@@ -65,6 +65,7 @@
                 <label id="resetMajor">สาขา</label>
                 <div class="fields">
                   <div class="sixteen wide field">
+                    <% if (userinfo.userSubExpertiseID != '' && userinfo.userSubExpertiseID != undefined && userinfo.userSubExpertiseID != null) { %>
                     <div class="ui multiple selection dropdown " id="majorDiv">
                       <input name="userSubExpertiseID" type="hidden" id="majorHideinput" value="<%=userinfo.userSubExpertiseID%>">
                       <i class="dropdown icon"></i>
@@ -75,6 +76,19 @@
                         <% } %>
                       </div>
                     </div>
+                    <% } else {%>
+
+                      <div class="ui multiple selection dropdown " id="majorDiv">
+                        <input name="userSubExpertiseID" type="hidden" id="majorHideinput" value="">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">สาขา</div>
+                        <div class="menu " id="majorSelect">
+                          <div class="item" data-value=""></div>
+                        </div>
+                      </div>
+
+                      <% } %>
+
                   </div>
                 </div>
               </div>
