@@ -1,5 +1,5 @@
 <div class="ui  secondary menu " style="font-family: 'Prompt', sans-serif;font-weight:200">
-<a class="active item" data-tab="aa">โครงการ</a>
+  <a class="active item" data-tab="aa">โครงการ</a>
   <a class="item" data-tab="ab">บริการวิชาการ</a>
   <a class="item" data-tab="ac">รางวัล</a>
   <a class="item" data-tab="ad">อื่น ๆ</a>
@@ -26,7 +26,7 @@
   <% if(portfolioDataType1.length){
     for(var i = 0;i < portfolioDataType1.length;i++) {
        if(portfolioDataType1[i].pfoCatagoryID == 'โครงการ'){ %>
-  <a class="ui link card" href="#">
+  <a class="ui link card fluid" href="/profile/<%=userinfo.id%>-<%=userinfo.firstname%>-<%=userinfo.lastname%>/<%=portfolioDataType1[i].pfoID%>-<%=portfolioDataType1[i].pfoTitile%>">
     <div class="content">
       <div class="header"><%=portfolioDataType1[i].pfoTitile%></div>
       <div class="meta">
@@ -54,7 +54,7 @@
   <% if(portfolioDataType2.length){
     for(var i = 0;i < portfolioDataType2.length;i++) {
        if(portfolioDataType2[i].pfoCatagoryID == 'บริการวิชาการ'){ %>
-  <a class="ui link card" href="#">
+  <a class="ui link card fluid" href="#">
     <div class="content">
       <div class="header"><%=portfolioDataType2[i].pfoTitile%></div>
       <div class="meta">
@@ -104,7 +104,7 @@
     <% if(portfolioDataType2.length){
       for(var i = 0;i < portfolioDataType2.length;i++) {
          if(portfolioDataType2[i].pfoCatagoryID == 'บริการวิชาการ'){ %>
-    <a class="ui link card" href="#">
+    <a class="ui link card fluid" href="#">
       <div class="content">
         <div class="header"><%=portfolioDataType2[i].pfoTitile%></div>
         <div class="meta">

@@ -5237,7 +5237,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 .ui.text.container {
   font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  max-width: 1127px !important;
+  max-width: 700px !important;
   line-height: 1.5;
 }
 
@@ -18364,7 +18364,7 @@ ol.ui.horizontal.list li:before,
   margin: 1rem 0em;
   padding: 1em 1em;
   border-radius: 0.28571429rem;
-  /* border: 1px solid rgba(34, 36, 38, 0.15); */
+  border: 1px solid rgba(34, 36, 38, 0.15);
 }
 
 .ui.segment:first-child {
@@ -28097,7 +28097,7 @@ Floated Menu / Item
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  width: 100%;
+  width: 290px;
   min-height: 0px;
   background: #FFFFFF;
   padding: 0em;

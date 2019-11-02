@@ -1,31 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.foundation.min.css">
-<link rel="stylesheet" href="css/login.css">
+<% include ../partials/head %>
+<title>จัดการข้อมูลในระบบ | RMUTT Researcher</title>
 
-<head>
-	<% include ../partials/head %>
-</head>
+<script>
+  $(document).ready(function() {
+    var table = $('#myPFOTable').DataTable();
 
-<body>
-	<div class="cell medium-auto medium-cell-block-container">
-		<div class="grid-x">
-			<div class="cell medium-cell-block-y shrink " style="width:17rem">
-				<% include ../partials/header %>
-			</div>
+    table.on('order.dt search.dt', function() {
+      table.column(0, {
+        search: 'applied',
+        order: 'applied'
+      }).nodes().each(function(cell, i) {
+        cell.innerHTML = i + 1;
+      });
+    }).draw();
+  });
+</script>
+<script src="js/new-work.js"></script>
 
-			<div class="auto medium-cell-block-y bgindex" style="width:100vmax">
+<link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700&display=swap" rel="stylesheet">
+
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 
 
 
-			</div>
-		</div>
-	</div>
-	<footer>
-		<% include ../partials/footer %>
-		<script src="js/app.js"></script>
-	</footer>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css" rel="stylesheet">
+
+<body class="thaiheader">
+  <% include ../partials/topbar %>
+<% include ../partials/flash %>
+  <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;">
+
+    <div class="ui grid">
+      <div class="two column large screen only row">
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui stackable two column grid container contentbody" style="min-height:55vh;">
+
+      <div class="column five wide">
+
+        <% include ../partials/navForAdmin %>
+
+      </div>
+
+      <div class="column eleven wide ">
+        <div class="row">
+          <h1 class="ui header" style="font-family: 'Sarabun', sans-serif;font-weight:600">ผลงานทั้งหมดของฉัน</h1>
+          <div class="ui basic segment">
+
+            <table id="myPFOTable" class="ui  table " style="width:100%">
+              <thead>
+                <tr>
+                  <th>ลำดับ</th>
+                  <th>ชื่อผลงาน</th>
+                  <th>ประเภท</th>
+                  <th>ปี</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% if(portdata.length){
+                  for(var i = 0;i < portdata.length;i++) { %>
+                <tr class=" ">
+                  <td></td>
+
+                  <td>
+                    <%=portdata[i].pfoTitile%>
+                  </td>
+
+                  <td>
+                    <%=portdata[i].pfoCatagoryID%>
+                  </td>
+
+                  <td>
+                    <%=portdata[i].pfoYears%>
+                  </td>
+                  <td>
+                    <a onclick="return confirm('คุณต้องการที่จะ ลบหรือไม่ ?');" href="/all-works/delete/<%=portdata[i].pfoID%>"><i class="trash icon"></i></a>
+                  </td>
+
+                </tr>
+                <% }
+                }else{ %>
+                <tr>
+                  <td colspan="5">No data</td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="ui grid">
+      <div class="two column large screen only row">
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <% include ../partials/footer %>
 </body>
 
 </html>

@@ -96,6 +96,9 @@ require('./routes/editEducationHistory.js')(app);
 //กลุ่มผลงาน
 require('./routes/allWork.js')(app);
 
+//กลุ่มจัดการระบบ
+require('./routes/dashboard.js')(app);
+
 //กลุ่มเกี่ยวกับโครงการ
 require('./routes/aboutSystem.js')(app);
 

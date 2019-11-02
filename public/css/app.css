@@ -1,8 +1,6 @@
-body{
-  min-height: 100%
+.main {
+  margin-top: 7em;
 }
-
-
 .thaiheader{
   font-family: 'Sarabun', sans-serif!important;
   background-repeat: no-repeat;

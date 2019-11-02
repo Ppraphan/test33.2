@@ -1,56 +1,146 @@
-<!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" href="css/forms.css">
-<link rel="stylesheet" href="css/regis.css">
-<link rel="stylesheet" href="css/signup.css">
-<link rel="stylesheet" href="css/foundation-datepicker.css">
-<link rel="stylesheet" href="css/foundation-datepicker.css.map">
-<link rel="stylesheet" href="css/foundation-datepicker.min.css">
-<head>
-  <% include ../partials/head %>
-</head>
+<% include ../partials/head %>
+<title>จัดการข้อมูลในระบบ | RMUTT Researcher</title>
 
-<body style="background-color: #efefef;  height: 100vh;">
+<script>
+  $(document).ready(function() {
+    var table = $('#allUserTable').DataTable();
 
-  <div class="cell medium-auto medium-cell-block-container">
-    <div class="grid-x">
-      <div class="cell medium-cell-block-y " style="width:17rem">
-        <% include ../partials/header %>
-        <% include ../partials/flash %>
-      </div>
+    table.on('order.dt search.dt', function() {
+      table.column(0, {
+        search: 'applied',
+        order: 'applied'
+      }).nodes().each(function(cell, i) {
+        cell.innerHTML = i + 1;
+      });
+    }).draw();
+  });
+</script>
+<script src="js/new-work.js"></script>
 
-      <div class="cell medium-cell-block-y auto" style="width:100%">
+<link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700&display=swap" rel="stylesheet">
 
-        <div class="cell small-6-container full bgforms" align="center">
-          <div>
-            <h1>จัดการผู้ใช้ในระบบ</h1>
-            <input id="txtSearchAllUser" type="search" name="search" placeholder="ค้นหาผู้ใช้งานในระบบ" class="animated-search-form form-control">
-            <div align="right" style="padding-right:1rem">
-              <a class="button secondary" href="/useridcheck">เพิ่มผู้ใช้งานใหม่</a>
-            </div>
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css" rel="stylesheet">
+
+<body class="thaiheader">
+  <% include ../partials/topbar %>
+  <% include ../partials/flash %>
+  <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;">
+
+    <div class="ui grid">
+      <div class="two column large screen only row">
+        <div class="column">
+          <div class="ui basic segment">
+
           </div>
         </div>
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui stackable two column grid container contentbody" style="min-height:55vh;">
+
+      <div class="column five wide">
+
+        <% include ../partials/navForAdmin %>
+
+      </div>
+
+      <div class="column eleven wide ">
+        <div class="row">
+          <h1 class="ui header" style="font-family: 'Sarabun', sans-serif;font-weight:600">ผู้ใช้งานทั้งหมดในระบบ</h1>
+          <div class="ui basic segment">
+
+            <table id="allUserTable" class="ui  table " style="width:100%">
+              <thead>
+                <tr>
+                  <th>ลำดับ</th>
+                  <th>ชื่อ นามสกุล</th>
+                  <th>หน่วยงาน</th>
+                  <th>สถานะ</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% if(usersData.length){
+                  for(var i = 0;i < usersData.length;i++) { %>
+                <tr class=" ">
+                  <td></td>
+
+                  <td>
+                    <a target="_blank" href="/profile/<%=usersData[i].id%>-<%=usersData[i].firstname%>-<%=usersData[i].lastname%>"><%=usersData[i].firstname%> <%=usersData[i].lastname%></a>
+                  </td>
+
+                  <td>
 
 
 
-        <div class="grid-x">
 
-          <div id="alert-area" class="alert-area"></div>
-          <% include ../pages/alluser/displaydata %>
+                    <% if(usersData[i].userSubWpName!=null||usersData[i].userSubWpName==''){%>
+                    <%=usersData[i].userSubWpName%>
+                    <% }else{%>
+                    ไม่ได้ระบุไว้
+                    <%} %>
+
+                  </td>
+
+                  <td>
+                    <div class="ui slider checkbox">
+                      <input type="checkbox" name="" value="<%=usersData[i].workingStatus%>">
+                      <label>เผยแพร่</label>
+                    </div>
+                  </td>
+
+                </tr>
+                <% }
+                }else{ %>
+                <tr>
+                  <td colspan="4">ไม่มีข้อมูล</td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+
+          </div>
+
         </div>
       </div>
 
+
     </div>
+
+
+    <div class="ui grid">
+      <div class="two column large screen only row">
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 
-</body>
-
-<footer>
-  <script src="js/datatable/allUser.js"></script>
-  <script src="js/departmentJS.js"></script>
-  <script src="js/department/newDepartment.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <% include ../partials/footer %>
-</footer>
+</body>
 
 </html>

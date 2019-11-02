@@ -1,0 +1,138 @@
+<title>RMUTT Researcher</title>
+<% include ../partials/head %>
+
+<script src="js/index.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+
+<style>
+  .dataTables_wrapper table thead {
+    display: none;
+  }
+
+  .dataTables_wrapper .dataTables_length {
+    display: none;
+  }
+
+  .dataTables_wrapper .dataTables_filter {
+    display: none;
+  }
+</style>
+
+<script>
+  $(document).ready(function() {
+
+    var table = $('#examplew').DataTable();
+
+    $('#myInput ').on('keyup', function() {
+      table.search(this.value).draw();
+    });
+
+    $('#searchWorkPlace').on('change', function() {
+      table.search(this.value).draw();
+    });
+
+    $('#searchExpertise').on('change', function() {
+      table.search(this.value).draw();
+    });
+  });
+  </script>
+<body>
+  <% include ../partials/topbar %>
+
+
+
+
+
+  <div class="ui stackable two column grid container" style="margin:52.625px 0px 20px 0px">
+
+    <div class="column five wide ">
+      <h1 class="ui header">กรองการค้นหา</h1>
+      <p>This is a basic fixed menu template using fixed size containers.</p>
+      <p>A text container is used for the main container, which is useful for single column layouts</p>
+      <div class="ui form">
+        <div class="field">
+          <input type="text" id="myInput" placeholder="ค้นหา" class="inputForSearch">
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui fluid  selection dropdown search">
+          <input type="hidden" name="user" id="searchWorkPlace" class="inputForSearch">
+          <i class="dropdown icon"></i>
+          <div class="default text">หน่วยงาน</div>
+          <div class="menu">
+
+            <% if(workplace.length){
+                  for(let k = 0;k < workplace.length;k++) { %>
+                    <div class="item" data-value="<%=workplace[k].wpName%>"><%=workplace[k].wpName%></div>
+                  <% }
+                }else{ %>
+            <% } %>
+
+          </div>
+        </div>
+
+        <div class="ui divider"></div>
+        <div class="ui fluid selection dropdown">
+          <input type="hidden" name="" id="searchExpertise" class="inputForSearch">
+          <i class="dropdown icon"></i>
+          <div class="default text">ความเชี่ยวชาญ</div>
+          <div class="menu">
+            <% if(expertise.length){
+                  for(let m = 0;m < expertise.length;m++) { %>
+                    <div class="item" data-value="<%=expertise[m].expertiseName%>"><%=expertise[m].expertiseName%></div>
+                  <% }
+                }else{ %>
+            <% } %>
+          </div>
+        </div>
+        <div class="ui divider"></div>
+        <!-- <div class="ui fluid selection dropdown">
+          <input type="hidden" name="user">
+          <i class="dropdown icon"></i>
+          <div class="default text">Select Friend</div>
+          <div class="menu">
+            <div class="item" data-value="jenny">
+              <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg">
+              Jenny Hess
+            </div>
+            <div class="item" data-value="elliot">
+              <img class="ui mini avatar image" src="/images/avatar/small/elliot.jpg">
+              Elliot Fu
+            </div>
+            <div class="item" data-value="stevie">
+              <img class="ui mini avatar image" src="/images/avatar/small/stevie.jpg">
+              Stevie Feliciano
+            </div>
+            <div class="item" data-value="christian">
+              <img class="ui mini avatar image" src="/images/avatar/small/christian.jpg">
+              Christian
+            </div>
+            <div class="item" data-value="matt">
+              <img class="ui mini avatar image" src="/images/avatar/small/matt.jpg">
+              Matt
+            </div>
+            <div class="item" data-value="justen">
+              <img class="ui mini avatar image" src="/images/avatar/small/justen.jpg">
+              Justen Kitsune
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+    </div>
+
+    <div class="column eleven wide">
+      <% include ../datatable/expDaTatable %>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <% include ../partials/footer %>
+
+</body>

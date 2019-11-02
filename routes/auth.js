@@ -81,7 +81,7 @@ module.exports = function(app, passport) {
     var message = req.query.message;
     var userinfo = req.user;
 
-    var sql = "SELECT id,profilePic,firstname,lastname,userPosition,userWpID,userSubWpName FROM project.users limit 0, 10;" +
+    var sql = "SELECT id,profilePic,academicPositions,firstname,lastname,userPosition,userWpID,userSubWpName,userExpertiseID,userSubExpertiseID FROM project.users ;" +
       "SELECT * FROM project.expertise  order by expertiseName;" +
       "SELECT * FROM project.workplace order by wpName;" +
       "SELECT count(*)as countUsers FROM project.users;";
@@ -89,7 +89,7 @@ module.exports = function(app, passport) {
     con.query(sql, function(err, results) {
       if (err) console.log("Error Selecting : %s ", err);
 
-      res.render('pages/index', {
+      res.render('pages/index2', {
         message: message,
         userinfo: userinfo,
 

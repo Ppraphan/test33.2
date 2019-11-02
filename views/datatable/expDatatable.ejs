@@ -1,0 +1,55 @@
+<table id="examplew" class="" style="width:100%" data-page-length='4'>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+
+            </tr>
+        </thead>
+        <tbody class="ui unstackable  items">
+          <% if(data.length){
+            for(var i = 0;i < data.length;i++) { %>
+            <tr class="item">
+                <td class="image">
+                  <img src="/userprofile/<%=data[i].profilePic%>">
+                </td>
+                <td class="content">
+                  <a class="header" href="/profile/<%=data[i].id%>-<%=data[i].firstname%>-<%=data[i].lastname%>"><%=data[i].academicPositions%> <%=data[i].firstname%>  <%=data[i].lastname%></a>
+                  <div class="meta">
+                    <%if (data[i].userWpID != null && data[i].userWpID != '') { %>
+                      <% for(var j=0; j<workplace.length; j++) {%>
+                        <%if (workplace[j].wpID==data[i].userWpID) { %>
+                        <span><%=workplace[j].wpName%></span>
+                        <% } %>
+                      <% } %>
+                    <% } %>
+                    <p><b><%=data[i].userSubWpName%></b></p>
+                  </div>
+                  <div class="description">
+                    <p></p>
+                  </div>
+                  <div class="extra">
+                    <%if (data[i].userExpertiseID != null && data[i].userExpertiseID != '') { %>
+                      <% for(let l=0; l<expertise.length; l++) {%>
+                        <%if (expertise[l].expertiseID==data[i].userExpertiseID) { %>
+                        <div class="ui basic label"><%=expertise[l].expertiseName%></div>
+                        <% } %>
+                      <% } %>
+                    <% } %>
+
+                    <p><%=data[i].userSubExpertiseID%></p>
+
+                  </div>
+                </td>
+
+            </tr>
+            <% }
+            }else{ %>
+            <tr>
+              <td colspan="2">ไม่มีข้อมูล</td>
+            </tr>
+            <% } %>
+
+        </tbody>
+
+    </table>

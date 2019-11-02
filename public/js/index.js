@@ -10,7 +10,15 @@ $(document).ready(function() {
   $('.ui.checkbox').checkbox();
 
   $('.ui.accordion').accordion();
+
+  $('.ui.fluid.selection.dropdown ')
+    .dropdown({
+      clearable: true
+    });
+
 });
+
+
 
 $(document).ready(function() {
   // window.location = window.location.pathname
