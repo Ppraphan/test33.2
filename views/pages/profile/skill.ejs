@@ -1,1 +1,5 @@
-<%-userData.userSkill%>
+  <% if(userData.userSkill != '' && userData.userSkill != null && userData.userSkill != undefined){%>
+    <%-userData.userSkill%>
+  <%}else{ %>
+    <p>ยังไม่มีข้อมูลในส่วนนี้</p>
+  <% } %>

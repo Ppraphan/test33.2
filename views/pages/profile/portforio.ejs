@@ -7,7 +7,7 @@
 
 
 <div class="ui active tab basic segment" data-tab="aa">
-  <div class="ui horizontal teal statistic tiny ">
+  <!-- <div class="ui horizontal teal statistic tiny ">
     <div class="label">
       กำลังแสดง
     </div>
@@ -20,13 +20,13 @@
     <div class="value">
       204
     </div>
-  </div>
+  </div> -->
 
 
   <% if(portfolioDataType1.length){
     for(var i = 0;i < portfolioDataType1.length;i++) {
        if(portfolioDataType1[i].pfoCatagoryID == 'โครงการ'){ %>
-  <a class="ui link card fluid" href="/profile/<%=userinfo.id%>-<%=userinfo.firstname%>-<%=userinfo.lastname%>/<%=portfolioDataType1[i].pfoID%>-<%=portfolioDataType1[i].pfoTitile%>">
+  <a class="ui link card fluid" href="/profile/<%=userinfo.id%>/<%=portfolioDataType1[i].pfoID%>">
     <div class="content">
       <div class="header"><%=portfolioDataType1[i].pfoTitile%></div>
       <div class="meta">
@@ -46,7 +46,7 @@
 
 
 
-  <button class="fluid ui button">Load more</button>
+  <!-- <button class="fluid ui button">Load more</button> -->
 </div>
 
 <div class="ui tab basic segment" data-tab="ab">
@@ -77,51 +77,51 @@
 
 <div class="ui tab basic segment" data-tab="ac">
 
-  <div class="ui  divided items">
-
-    <a class="ui raised card" href="#">
-      <div class="content">
-        <div class="center aligned header">Jenny Hess</div>
-        <div class="center aligned description">
-          <p>Jenny is a student studying Media Management at the New School</p>
-        </div>
+  <% if(portfolioDataType3.length){
+    for(var i = 0;i < portfolioDataType3.length;i++) {
+       if(portfolioDataType3[i].pfoCatagoryID == 'รางวัล'){ %>
+  <a class="ui link card fluid" href="#">
+    <div class="content">
+      <div class="header"><%=portfolioDataType3[i].pfoTitile%></div>
+      <div class="meta">
+        <span class="category"><%=portfolioDataType3[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType3[i].pfoYears%></span>
       </div>
-      <div class="extra content">
-        <div class="center aligned author">
-          <i class="trophy icon"></i> Jenny
-        </div>
+      <div class="description">
+        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, typically consisting of alphabetic and numeric characters</p>
       </div>
-    </a>
+    </div>
 
-
-  </div>
+  </a>
+  <% }
+  }
+  }else{ %>
+  ยังไม่มีข้อมูลในส่วนนี้
+  <% } %>
 
 </div>
 
 <div class="ui tab basic  segment" data-tab="ad">
 
-  <div class="ui unstackable divided items">
-    <% if(portfolioDataType2.length){
-      for(var i = 0;i < portfolioDataType2.length;i++) {
-         if(portfolioDataType2[i].pfoCatagoryID == 'บริการวิชาการ'){ %>
-    <a class="ui link card fluid" href="#">
-      <div class="content">
-        <div class="header"><%=portfolioDataType2[i].pfoTitile%></div>
-        <div class="meta">
-          <span class="category"><%=portfolioDataType2[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType2[i].pfoYears%></span>
-        </div>
-        <div class="description">
-          <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, typically consisting of alphabetic and numeric characters</p>
-        </div>
+  <% if(portfolioDataType4.length){
+    for(var i = 0;i < portfolioDataType4.length;i++) {
+       if(portfolioDataType4[i].pfoCatagoryID == 'อื่น ๆ'){ %>
+  <a class="ui link card fluid" href="#">
+    <div class="content">
+      <div class="header"><%=portfolioDataType4[i].pfoTitile%></div>
+      <div class="meta">
+        <span class="category"><%=portfolioDataType4[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType4[i].pfoYears%></span>
       </div>
+      <div class="description">
+        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, typically consisting of alphabetic and numeric characters</p>
+      </div>
+    </div>
 
-    </a>
-    <% }
-    }
-    }else{ %>
-    ยังไม่มีข้อมูลในส่วนนี้
-    <% } %>
-  </div>
+  </a>
+  <% }
+  }
+  }else{ %>
+  ยังไม่มีข้อมูลในส่วนนี้
+  <% } %>
 
 
 </div>

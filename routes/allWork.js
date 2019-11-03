@@ -4,6 +4,29 @@ const fileUpload = require('express-fileupload');
 
 module.exports = function(app) {
 
+  app.get('/profile/:userid/:pfoID', function(req, res) {
+    var userinfo = req.user;
+    var message = req.query.message;
+
+
+
+
+    con.query('SELECT * FROM project.portfolio where pfoID = "' + req.params.pfoID + '";'+
+    'SELECT * FROM project.users where id = "' + req.params.userid + '";', function(err, rows) {
+      if (err)
+        console.log("Error Selecting : %s ", err);
+      res.render('pages/work', {
+        userinfo: userinfo,
+        message: message,
+
+        portdata: rows[0][0],
+        selectUser:rows[1][0],
+      });
+
+    });
+
+  });
+
     app.get('/all-works', function(req, res) {
       var userinfo = req.user;
       var message = req.query.message;

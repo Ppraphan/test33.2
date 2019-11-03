@@ -1,0 +1,34 @@
+<% include ../partials/head %>
+<script src="js/plugins/qr-code.js"></script>
+<title><%=portdata.pfoTitile%> | RMUTT Researcher</title>
+
+<link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
+
+<body>
+  <% include ../partials/topbar %>
+
+
+
+  <div class="ui  container" style="  min-height:80vh;padding:0px 0px 2rem 0px">
+
+
+  <div class="ui main text container">
+    <div class="ui breadcrumb">
+      <a class="section" href="/">หน้าแรก</a>
+      <div class="divider"> / </div>
+      <a class="section" href="/profile/<%=selectUser.id%>-<%=selectUser.firstname%>-<%=selectUser.lastname%>"><%=selectUser.firstname%> <%=selectUser.lastname%></a>
+      <div class="divider"> / </div>
+      <div class="active section"><%=portdata.pfoTitile%></div>
+    </div>
+    <h1 class="ui header" style="color:#002654"><%=portdata.pfoTitile%></h1>
+    <% if(portdata.pfoDetails != '' && portdata.pfoDetails != null && portdata.pfoDetails != undefined){%>
+      <%-portdata.pfoDetails%>
+    <%}else{ %>
+      <p>ยังไม่มีข้อมูลในส่วนนี้</p>
+    <% } %>
+
+  </div>
+  </div>
+
+  <% include ../partials/footer %>
+</body>

@@ -1,6 +1,9 @@
 <% include ../partials/head %>
 <title>Edit Profile | RMUTT Researcher</title>
 
+<!-- <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.css" rel="stylesheet">
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js" ></script> -->
+
 <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.css" rel="stylesheet">
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js" ></script>
 
@@ -45,18 +48,22 @@
           <div class="ui basic segment">
             <form class="ui form" action="/edit-profile"method="post"enctype="multipart/form-data">
 
-              <div class="ui medium image" id="profileEdit">
-                <div class="ui dimmer">
-                  <div class="content">
-                    <div class="ui primary button" onclick="newprofile()" id="chgImage">เพิ่มรูปภาพ</div>
-                  </div>
-                </div>
-                <img type='file'name="profileimage" id="userProfile"class="ui image" style="min-height:300px" accept=".png, .jpg, .jpeg" src="./userprofile/<%=userinfo.profilePic%>">
+              <p>
+<!-- Below are a series of inputs which allow file selection and interaction with the cropper api -->
+		<input type="file" id="fileInput" accept="image/*" />
+		<input type="button" id="btnCrop" value="Crop" />
+		<input type="button" id="btnRestore" value="Restore" />
+</p>
+
+<div>
+  <canvas id="canvas">
+    Your browser does not support the HTML5 canvas element.
+  </canvas>
+</div>
+
+<div id="result"></div>
 
 
-              </div>
-
-              <% include ../pages/edit-profile/uploadImage %>
               <h4 class="ui dividing header thaiheader">ข้อมูลทั่วไป</h4>
               <div class="field">
                 <label>WIFI ID</label>

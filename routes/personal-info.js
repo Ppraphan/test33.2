@@ -13,10 +13,10 @@ module.exports = function(app) {
 
     var shortid = parseInt(fullid.split("-", 1));
 
-
-    var sql0 = "SELECT userExpertiseID FROM project.users where id = " + shortid + ";"
+    var sql0 = "SELECT userExpertiseID FROM project.users where id = " + shortid + ";";
     con.query(sql0, function(err, results) {
       console.log("sql0");
+
       if (err) console.log("Error Selecting : %s ", err);
 
 
@@ -25,12 +25,16 @@ module.exports = function(app) {
         "SELECT * FROM project.subexpertise where subExpertiseID=" + results[0].userExpertiseID + " order by subExpertiseName;" +
         "SELECT * FROM project.workplace;" +
         "SELECT * FROM project.educationhistory where ehUserAI_ID = " + shortid + " order by ehGraduateYear DESC;" +
-        "SELECT * FROM project.careerhistory where chUserAI_ID = " + shortid + " order by chEntYear DESC; "+
-        "SELECT * FROM project.users  where id = " + shortid + ";"+
-        "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'โครงการ' order by pfoYears DESC limit 0, 5;"+
-        "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'บริการวิชาการ' order by pfoYears DESC limit 0, 5;";
+        "SELECT * FROM project.careerhistory where chUserAI_ID = " + shortid + " order by chEntYear DESC; " +
+        "SELECT * FROM project.users  where id = " + shortid + ";" +
+        "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'โครงการ' order by pfoYears DESC limit 0, 5;" +
+        "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'บริการวิชาการ' order by pfoYears DESC limit 0, 5;" +
+        "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'รางวัล' order by pfoYears DESC limit 0, 5;" +
+        "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'อื่น ๆ' order by pfoYears DESC limit 0, 5;";
 
       con.query(sql, function(err, results) {
+        console.log(sql);
+        console.log(results);
 
         if (err) console.log("Error Selecting : %s ", err);
 
@@ -48,6 +52,8 @@ module.exports = function(app) {
 
           portfolioDataType1: results[6],
           portfolioDataType2: results[7],
+          portfolioDataType3: results[8],
+          portfolioDataType4: results[9],
         });
 
       });
@@ -168,12 +174,12 @@ module.exports = function(app) {
 
 
 
-      res.render('pages/create-bs-cards', {
-        message: message,
-        userinfo: userinfo,
+    res.render('pages/create-bs-cards', {
+      message: message,
+      userinfo: userinfo,
 
 
-      });
+    });
 
 
 

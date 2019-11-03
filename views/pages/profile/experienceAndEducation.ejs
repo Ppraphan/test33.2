@@ -7,7 +7,7 @@
 
 
 <div class="ui bulleted list">
-  <% if (expData != ' ' && expData != undefined ) { %>
+  <% if (expData != ''&& expData != null && expData != undefined ) { %>
   <% for(var i=0; i<expData.length; i++) {%>
   <div class="item">
     <div><%=expData[i].chEntYear%> - <%=expData[i].chLeftYear%></div>
@@ -19,7 +19,9 @@
     </div>
   </div>
   <% } %>
-  <% } %>
+  <% }else{%>
+  <p>ยังไม่มีข้อมูลในส่วนนี้</p>
+  <%  } %>
 </div>
 
 
@@ -35,9 +37,9 @@
 
 <div class="ui bulleted list">
 
-  <% if (educateData != ' ' && educateData != undefined ) { %>
+  <% if (educateData != '' && educateData != null && educateData != undefined ) { %>
   <% for(var i=0; i<educateData.length; i++) {%>
-    <% if (educateData[i].ehEducateLavel != 6 ) { %>
+  <% if (educateData[i].ehEducateLavel != 6 ) { %>
   <div class="item">
     <div><%=educateData[i].ehGraduateYear%></div>
     <div class="list">
@@ -49,7 +51,9 @@
   </div>
   <% } %>
   <% } %>
-  <% } %>
+  <% }else{%>
+  <p>ยังไม่มีข้อมูลในส่วนนี้</p>
+  <%  } %>
 
 
 
@@ -67,9 +71,9 @@
 
 <div class="ui bulleted list">
 
-  <% if (educateData != ' ' && educateData != undefined  ) { %>
+  <% if (educateData != '' && educateData != null && educateData != undefined  ) { %>
   <% for(var i=0; i<educateData.length; i++) {%>
-<% if (educateData[i].ehEducateLavel == 6 ) { %>
+  <% if (educateData[i].ehEducateLavel == 6 ) { %>
   <div class="item">
     <div><%=educateData[i].ehGraduateYear%></div>
     <div class="list">
@@ -82,8 +86,9 @@
   <% } %>
   <% } %>
 
-<% } %>
-
+  <% }else{%>
+  <p>ยังไม่มีข้อมูลในส่วนนี้</p>
+  <%  } %>
 
 
 </div>

@@ -17,16 +17,16 @@
 <body>
   <% include ../partials/topbar %>
 
-  <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;">
+  <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;min-height:80vh;">
     <div class="ui stackable two column grid container">
 
       <div class="column five wide ">
         <div class="row ">
 
           <% if (userData.profilePic != '' && userData.profilePic != undefined && userData.profilePic != null) { %>
-          <img class="ui small centered rounded image" src="./userprofile/<%=userData.profilePic%>">
+            <img class="ui small centered rounded image" src="/userprofile/<%=userData.profilePic%>">
           <% } else {%>
-          <img class="ui small centered rounded image" src="./userprofile/default-profile.jpg">
+            <img class="ui small centered rounded image" src="/userprofile/default-profile.jpg">
           <% } %>
 
 
@@ -47,7 +47,7 @@
             <% } %>
           </h1>
 
-          <% if (userinfo != ' ' && userinfo != undefined && userinfo.id== userData.id) { %>
+          <% if (userinfo != '' && userinfo != undefined && userinfo.id== userData.id) { %>
           <div class="ui basic center aligned  segment">
             <div class="ui basic buttons ">
               <a href="/edit-profile">
@@ -106,7 +106,7 @@
           <div class="ui large list">
             <div class="item">
               <div class="middle aligned content">
-                <% if (userData.firstname != '' && userData.firstname != undefined && userData.firstname != null) { %>
+                <% if (userData.userWorkTel != '' && userData.userWorkTel != undefined && userData.userWorkTel != null) { %>
                 <i class="phone icon"></i> <%=userData.userWorkTel%>
                 <% } else {%>
                 <i class="phone icon"></i> ยังไม่ได้ใส่เบอร์โทร
@@ -115,7 +115,7 @@
             </div>
             <div class="item">
               <div class="middle aligned content">
-                <% if (userData.firstname != '' && userData.firstname != undefined && userData.firstname != null) { %>
+                <% if (userData.userWorkEmail != '' && userData.userWorkEmail != undefined && userData.userWorkEmail != null) { %>
                 <i class="envelope icon"></i> <%=userData.userWorkEmail%>
                 <% } else {%>
                 <i class="envelope icon"></i> ยังไม่ได้ใส่อีเมล

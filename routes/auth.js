@@ -111,7 +111,7 @@ module.exports = function(app, passport) {
   }));
 
   app.all('*', function(req, res, next) {
-    if (req.path === '/' || req.path === '/login' || req.path === '/forgot-password' || req.originalUrl.split("/")[1] === 'profile'|| req.originalUrl.split("/")[1] === 'getuserdata')
+    if (req.path === '/' || req.path === '/login' || req.path === '/forgot-password' || req.originalUrl.split("/")[1] === 'profile'|| req.originalUrl.split("/")[1] === 'getuserdata'|| req.path === '/dev'|| req.path === '/recommend'|| req.path === '/ask'|| req.path === '/about')
       next();
     else
       isLoggedIn(req, res, next);
