@@ -15,6 +15,16 @@
     }).draw();
   });
 </script>
+
+<style>
+  .showme {
+    display: none;
+  }
+
+  .showhim:hover .showme {
+    display: block;
+  }
+</style>
 <script src="js/new-work.js"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
@@ -77,7 +87,7 @@
               <tbody>
                 <% if(portdata.length){
                   for(var i = 0;i < portdata.length;i++) { %>
-                <tr class=" ">
+                <tr class="showhim ">
                   <td></td>
 
                   <td>
@@ -92,14 +102,14 @@
                     <%=portdata[i].pfoYears%>
                   </td>
                   <td>
-                    <a onclick="return confirm('คุณต้องการที่จะ ลบหรือไม่ ?');" href="/all-works/delete/<%=portdata[i].pfoID%>"><i class="trash icon"></i></a>
+                    <a class="showme" onclick="return confirm('คุณต้องการที่จะ ลบหรือไม่ ?');" href="/all-works/delete/<%=portdata[i].pfoID%>"><i class="red trash icon"></i></a>
                   </td>
 
                 </tr>
                 <% }
                 }else{ %>
                 <tr>
-                  <td colspan="5">No data</td>
+                  <td colspan="6">No data</td>
                 </tr>
                 <% } %>
               </tbody>

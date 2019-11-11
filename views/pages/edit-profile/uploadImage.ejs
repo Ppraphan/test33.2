@@ -1,55 +1,51 @@
 <div class="ui modal">
 
+
   <i class="close icon"></i>
-  <div class="header">เปลี่ยนรูปประจำตัว
-  </div>
+  <div class="header">รูปประจำตัว</div>
 
-  <div class="ui placeholder segment basic">
-    <div class="ui two column stackable center aligned grid">
-      <div class="ui vertical divider">-></div>
-      <div class="middle aligned row">
-        <div class="ui stackable four column grid">
-          <div class="column"></div>
-          <div class="column"></div>``
-          <div class="column"></div>
-          <div class="column"></div>
-        </div>
-        <div class="column">
-          <div>
-            <canvas id="canvas" class="image">
-              Your browser does not support the HTML5 canvas element.
-            </canvas>
-          </div>
-          <div class="field">
-            <input class="" type="file" id="fileInput" accept="image/*" />
-            <div class="ui  buttons">
+  <div class="image content">
+    <div class="ui  image">
+      <p>
+        <input type="file" id="fileInput" name="fileInput" accept="image/*" value=""/>
+        
+        <input type="button" id="btnCrop" value="ครอบตัด" />
+        <input type="button" id="btnRestore" value="คืนค่า" />
+      </p>
 
-              <button class="ui button primary" type="button" id="btnCrop">ครอบ</button>
-              <button class="ui button" type="button" id="btnRestore">คืนค่า</button>
-            </div>
 
-          </div>
-        </div>
-        <div class="column">
-          <img id="result">
+
+      <div>
+        <canvas id="canvas">
+          Your browser does not support the HTML5 canvas element.
+        </canvas>
+      </div>
+
+      <div class="ui indicating small progress" data-value="1" data-total="100" id="example0">
+        <div class="bar">
+          <div class="progress"></div>
         </div>
       </div>
 
     </div>
-  </div>
 
+    <div class="description">
+      <div class="ui header">ตัวอย่าง</div>
+      <div id="result"></div>
+
+
+    </div>
+
+  </div>
 
   <div class="actions">
-
-
-
-    <div class="ui black deny button">Cancel</div>
-    <div class="ui positive right  button" id="changeImage">OK</div>
+    <div class="ui black deny button">
+      ยกเลิก
+    </div>
+    <div class="ui positive right labeled icon button">
+      บันทึก
+      <i class="checkmark icon"></i>
+    </div>
   </div>
-
-
-
-
-
 
 </div>

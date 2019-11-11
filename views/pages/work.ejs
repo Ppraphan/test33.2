@@ -4,30 +4,49 @@
 
 <link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500&display=swap&subset=thai" rel="stylesheet">
 
+
 <body>
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v5.0&appId=423451354795479&autoLogAppEvents=1"></script>
   <% include ../partials/topbar %>
 
 
 
-  <div class="ui  container" style="  min-height:80vh;padding:0px 0px 2rem 0px">
+  <div class="ui  container" style="  min-height:80vh;padding:0px 0px 4.5rem 0px">
 
 
-  <div class="ui main text container">
-    <div class="ui breadcrumb">
-      <a class="section" href="/">หน้าแรก</a>
-      <div class="divider"> / </div>
-      <a class="section" href="/profile/<%=selectUser.id%>-<%=selectUser.firstname%>-<%=selectUser.lastname%>"><%=selectUser.firstname%> <%=selectUser.lastname%></a>
-      <div class="divider"> / </div>
-      <div class="active section"><%=portdata.pfoTitile%></div>
+    <div class="ui main text container">
+      <div class="ui breadcrumb">
+        <a class="section" href="/">หน้าแรก</a>
+        <div class="divider"> / </div>
+        <a class="section" href="/profile/<%=selectUser.id%>-<%=selectUser.firstname%>-<%=selectUser.lastname%>"><%=selectUser.firstname%> <%=selectUser.lastname%></a>
+        <div class="divider"> / </div>
+        <div class="active section"><%=portdata.pfoTitile%></div>
+
+      </div>
+      <h1 class="ui header" style="color:#002654"><%=portdata.pfoTitile%></h1>
+
+
+      <div class="content grey">
+      <div class="date"><%=portdata.pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portdata.pfoYears%></div>
+      <br>
     </div>
-    <h1 class="ui header" style="color:#002654"><%=portdata.pfoTitile%></h1>
-    <% if(portdata.pfoDetails != '' && portdata.pfoDetails != null && portdata.pfoDetails != undefined){%>
-      <%-portdata.pfoDetails%>
-    <%}else{ %>
-      <p>ยังไม่มีข้อมูลในส่วนนี้</p>
-    <% } %>
 
-  </div>
+      <% if(portdata.pfoIntro != '' && portdata.pfoIntro != null && portdata.pfoIntro != undefined){%>
+      <p><%=portdata.pfoIntro%></p>
+      <%}else{ } %>
+
+      <% if(portdata.pfoDetails != '' && portdata.pfoDetails != null && portdata.pfoDetails != undefined){%>
+      <%-portdata.pfoDetails%>
+      <%}else{ %>
+      <p>ยังไม่มีข้อมูลในส่วนนี้</p>
+      <% } %>
+
+      <div class="ui divider"></div>
+
+      <div class="fb-like" data-href data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+
+    </div>
   </div>
 
   <% include ../partials/footer %>

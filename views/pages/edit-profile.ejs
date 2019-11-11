@@ -1,11 +1,11 @@
 <% include ../partials/head %>
-<title>Edit Profile | RMUTT Researcher</title>
+<title>แก้ไขข้อมูลส่วนตัว | RMUTT Researcher</title>
 
 <!-- <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.css" rel="stylesheet">
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js" ></script> -->
 
-<link  href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.css" rel="stylesheet">
-<script  src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js" ></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js"></script>
 
 
 <script src="js/edit-profile.js"></script>
@@ -18,6 +18,7 @@
 
 <body class="thaiheader">
   <% include ../partials/topbar %>
+  <% include ../partials/flash %>
 
   <div class="ui  container" style="padding:6rem 1rem 1rem 1rem;">
 
@@ -46,23 +47,22 @@
         <div class="row">
           <h1 class="ui header" style="font-family: 'Sarabun', sans-serif;font-weight:600"><i class="user icon"></i> ข้อมูลส่วนตัว </h1>
           <div class="ui basic segment">
-            <form class="ui form" action="/edit-profile"method="post"enctype="multipart/form-data">
+            <form class="ui form" action="/edit-profile" method="post" enctype="multipart/form-data">
 
-              <p>
-<!-- Below are a series of inputs which allow file selection and interaction with the cropper api -->
-		<input type="file" id="fileInput" accept="image/*" />
-		<input type="button" id="btnCrop" value="Crop" />
-		<input type="button" id="btnRestore" value="Restore" />
-</p>
+              <div class="ui medium image" id="profileEdit">
+                <div class="ui dimmer">
+                  <div class="content">
+                    <div class="ui primary button" onclick="newprofile()" id="chgImage">เพิ่มรูปภาพ</div>
+                  </div>
+                </div>
+                <img id="userProfile" onchange="readURL(this);" class="ui image" style="min-height:300px" accept=".png, .jpg, .jpeg" src="./userprofile/<%=userinfo.profilePic%>">
 
-<div>
-  <canvas id="canvas">
-    Your browser does not support the HTML5 canvas element.
-  </canvas>
-</div>
 
-<div id="result"></div>
+              </div>
 
+              <% include ../pages/edit-profile/uploadImage %>
+              <a href="" id="downloadfile" download="filename.png">Download</a>
+              <input type="hidden" name="base64img" id="base64img">
 
               <h4 class="ui dividing header thaiheader">ข้อมูลทั่วไป</h4>
               <div class="field">

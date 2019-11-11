@@ -1,6 +1,7 @@
 var con = require('./connect-db.js'); /*เชื่อมต่อฐานข้อมูล*/
 var bodyParser = require('body-parser');
-
+var fileUpload = require('express-fileupload');
+var base64Img = require('base64-img');
 
 module.exports = function(app) {
 
@@ -15,7 +16,6 @@ module.exports = function(app) {
 
     var sql0 = "SELECT userExpertiseID FROM project.users where id = " + shortid + ";";
     con.query(sql0, function(err, results) {
-      console.log("sql0");
 
       if (err) console.log("Error Selecting : %s ", err);
 
@@ -26,15 +26,22 @@ module.exports = function(app) {
         "SELECT * FROM project.workplace;" +
         "SELECT * FROM project.educationhistory where ehUserAI_ID = " + shortid + " order by ehGraduateYear DESC;" +
         "SELECT * FROM project.careerhistory where chUserAI_ID = " + shortid + " order by chEntYear DESC; " +
+
         "SELECT * FROM project.users  where id = " + shortid + ";" +
+
         "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'โครงการ' order by pfoYears DESC limit 0, 5;" +
         "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'บริการวิชาการ' order by pfoYears DESC limit 0, 5;" +
         "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'รางวัล' order by pfoYears DESC limit 0, 5;" +
-        "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'อื่น ๆ' order by pfoYears DESC limit 0, 5;";
+        "SELECT * FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'อื่น ๆ' order by pfoYears DESC limit 0, 5;" +
+
+        "SELECT COUNT(pfoID)  as countPFOType1  FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'โครงการ' ;" +
+        "SELECT COUNT(pfoID)  as countPFOType2  FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'บริการวิชาการ' ;" +
+        "SELECT COUNT(pfoID)  as countPFOType3  FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'รางวัล' ;" +
+        "SELECT COUNT(pfoID)  as countPFOType4  FROM project.portfolio where pfoUserAI_ID = " + shortid + " and pfoCatagoryID = 'อื่น ๆ' ;";
 
       con.query(sql, function(err, results) {
-        console.log(sql);
-        console.log(results);
+
+        console.log(results[5][0]);
 
         if (err) console.log("Error Selecting : %s ", err);
 
@@ -54,6 +61,11 @@ module.exports = function(app) {
           portfolioDataType2: results[7],
           portfolioDataType3: results[8],
           portfolioDataType4: results[9],
+
+          countAllPFOType1: results[10][0],
+          countAllPFOType2: results[11][0],
+          countAllPFOType3: results[12][0],
+          countAllPFOType4: results[13][0],
         });
 
       });
@@ -93,8 +105,11 @@ module.exports = function(app) {
 
   app.get('/edit-profile', function(req, res) {
     var userinfo = req.user;
+    var message = req.query.message;
+
     res.render('pages/edit-profile', {
       userinfo: userinfo,
+      message: message,
     });
   });
 
@@ -189,7 +204,88 @@ module.exports = function(app) {
 
 
 
+  app.post('/edit-profile', function(req, res) {
 
+
+
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
+    var facebook = req.body.facebook;
+    var instagram = req.body.instagram;
+    var twitter = req.body.twitter;
+    var line = req.body.line;
+
+    if (req.body.firstname == '' || req.body.firstname == undefined) firstname = "-";
+    if (req.body.lastname == '' || req.body.lastname == undefined) lastname = "-";
+    if (req.body.facebook == '' || req.body.facebook == undefined) facebook = "-";
+    if (req.body.instagram == '' || req.body.instagram == undefined) instagram = "-";
+    if (req.body.twitter == '' || req.body.twitter == undefined) twitter = "-";
+    if (req.body.line == '' || req.body.line == undefined) line = "-";
+
+    console.log("แก้ไขข้อมูลที่ ID : " + req.user.id);
+
+     if (!(req.body.base64img)) {
+
+      var sql0 = "UPDATE project.users  SET firstname ='" + firstname +
+        "',lastname ='" + lastname +
+        "',facebook ='" + facebook +
+        "',instagram ='" + instagram +
+        "',twitter ='" + twitter +
+        "',line ='" + line +
+
+        "' WHERE id ='" + req.user.id + "' ";
+
+      con.query(sql0, function(err, rows) {
+        if (err)
+          console.log("Error Selecting : %s ", err);
+        console.log("แก้ไขข้อมูลส่วนตัวกรณีไม่มีรูปภาพ");
+      });
+
+    } else {
+      const base64Image = req.body.base64img;
+
+      var imgname = 'profileIMG_'+req.user.id;
+      var imgnamePNG ='profileIMG_'+req.user.id+'.png';
+
+      base64Img.img(base64Image, './public/userprofile/', imgname, function(err, filepath) {});
+
+      // var fileInput = req.files.fileInput;
+      // var imageName = req.files.fileInput.name;
+      // var imagetype = req.files.fileInput.mimetype;
+      // var imageNameWithoutspace = imageName.replace(/\s/g, '');
+      // var dr2 = (imageNameWithoutspace);
+      // console.log(imagetype);
+      //
+      // startup_image.mv('./public/userprofile/' + req.user.id + imageNameWithoutspace, function(err) {
+      //   if (startup_image == null) {
+      //     console.log(err);
+      //   } else {
+      //     console.log('./public/userprofile/' + req.user.id + imageNameWithoutspace + "\t" + "uploaded");
+      //   }
+      // });
+
+      var sql1 = "UPDATE project.users  SET firstname ='" + firstname +
+        "',lastname ='" + lastname +
+        "',facebook ='" + facebook +
+        "',instagram ='" + instagram +
+        "',twitter ='" + twitter +
+        "',line ='" + line +
+        "',profilePic ='" + imgnamePNG +
+
+        "' WHERE id ='" + req.user.id + "' ";
+
+      con.query(sql1, function(err, rows) {
+        if (err)
+          console.log("Error Selecting : %s ", err);
+      });
+
+    }
+
+
+    var message = encodeURIComponent('แก้ไขข้อมูลเรียบร้อยแล้ว');
+    res.redirect('/edit-profile?message=' + message);
+
+  });
 
   app.post('/edit-expertise', function(req, res) {
 
@@ -297,6 +393,47 @@ module.exports = function(app) {
 
   });
 
+  app.get('/getotherpfotype1', function(req, res) {
+    var valPFOType1Showon = req.query.valPFOType1Showon;
+    var userid = req.query.userid;
+
+    var sql = "SELECT * FROM project.portfolio where pfoUserAI_ID = " + userid + " and pfoCatagoryID = 'โครงการ' order by pfoYears DESC limit " + valPFOType1Showon + ", 5;"
+
+    con.query(sql, function(err, results) {
+      console.log(sql);
+      if (err) console.log("Error Selecting : %s ", err);
+
+      res.send(results);
+    });
+  });
+
+  app.get('/getotherpfotype2', function(req, res) {
+    var valPFOType2Showon = req.query.valPFOType1Showon;
+    var userid = req.query.userid;
+
+    var sql = "SELECT * FROM project.portfolio where pfoUserAI_ID = " + userid + " and pfoCatagoryID = 'บริการวิชาการ' order by pfoYears DESC limit " + valPFOType2Showon + ", 5;"
+
+    con.query(sql, function(err, results) {
+      console.log(sql);
+      if (err) console.log("Error Selecting : %s ", err);
+
+      res.send(results);
+    });
+  });
+
+  app.get('/getotherpfotype3', function(req, res) {
+    var valPFOType3Showon = req.query.valPFOType1Showon;
+    var userid = req.query.userid;
+
+    var sql = "SELECT * FROM project.portfolio where pfoUserAI_ID = " + userid + " and pfoCatagoryID = 'บริการวิชาการ' order by pfoYears DESC limit " + valPFOType2Showon + ", 5;"
+
+    con.query(sql, function(err, results) {
+      console.log(sql);
+      if (err) console.log("Error Selecting : %s ", err);
+
+      res.send(results);
+    });
+  });
 
 
   app.get('/getuserdata', function(req, res) {

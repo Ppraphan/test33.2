@@ -1,7 +1,7 @@
 img {
   max-width: 100%;
 }
-/* 
+/*
 #canvas {
   height: 400px;
   width: 400px;
@@ -9,18 +9,18 @@ img {
   cursor: default;
   border: 1px solid black;
 }
-
+*/
 #result {
-  height: 100%;
-  width: 100%;
+  height: 450px;
+  width: 450px;
   background-color: #ffffff;
   cursor: default;
   border: 1px solid black;
-} */
+}
 
 #canvas {
-  height: 600px;
-  width: 600px;
+  height: 450px;
+  width: 450px;
   background-color: #ffffff;
   cursor: default;
   border: 1px solid black;

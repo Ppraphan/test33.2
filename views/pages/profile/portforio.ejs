@@ -7,68 +7,94 @@
 
 
 <div class="ui active tab basic segment" data-tab="aa">
-  <!-- <div class="ui horizontal teal statistic tiny ">
-    <div class="label">
-      กำลังแสดง
-    </div>
-    <div class="value ">
-      5
-    </div>
-    <div class="label">
-      จาก
-    </div>
-    <div class="value">
-      204
-    </div>
-  </div> -->
 
+  <% if(portfolioDataType1.length){ %>
+  <div id="tabPFOType1">
+    <div class="ui horizontal teal statistic tiny">
+      <div class="label">กำลังแสดง</div>
+      <div class="value " id="PFOType1Showonlabel"><%=portfolioDataType1.length%></div>
+      <input type="hidden" id="PFOType1Showon" value="<%=portfolioDataType1.length%>" />
+      <div class="label">จาก</div>
+      <div class="value"><%=countAllPFOType1.countPFOType1%></div>
+      <input type="hidden" id="countAllPFOType1input" value="<%=countAllPFOType1.countPFOType1%>" />
+    </div>
 
-  <% if(portfolioDataType1.length){
-    for(var i = 0;i < portfolioDataType1.length;i++) {
+    <% for( i = 0;i < portfolioDataType1.length;i++) {
        if(portfolioDataType1[i].pfoCatagoryID == 'โครงการ'){ %>
-  <a class="ui link card fluid" href="/profile/<%=userinfo.id%>/<%=portfolioDataType1[i].pfoID%>">
-    <div class="content">
-      <div class="header"><%=portfolioDataType1[i].pfoTitile%></div>
-      <div class="meta">
-        <span class="category"><%=portfolioDataType1[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType1[i].pfoYears%></span>
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, typically consisting of alphabetic and numeric characters</p>
-      </div>
-    </div>
+    <a class="ui link card fluid" href="/profile/<%=userData.id%>/<%=portfolioDataType1[i].pfoID%>">
+      <div class="content">
+        <div class="header"><%=portfolioDataType1[i].pfoTitile%></div>
+        <div class="meta">
+          <span class="category"><%=portfolioDataType1[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType1[i].pfoYears%></span>
+        </div>
+        <div class="description">
+          <% if(portfolioDataType1[i].pfoIntro != '' && portfolioDataType1[i].pfoIntro != null && portfolioDataType1[i].pfoIntro != undefined){%>
+          <div class="description">
+            <p><%=portfolioDataType1[i].pfoIntro%></p>
+          </div>
+          <%}else{ %>
 
-  </a>
-  <% }
-  }
-  }else{ %>
+          <% } %>
+        </div>
+      </div>
+    </a>
+    <% }
+  }%>
+  </div>
+  <%if(portfolioDataType1.length >= countAllPFOType1.countPFOType1  ){ %>
+
+  <%   }else{ %>
+  <button class="fluid ui button" id="loadmorePFOType1" style="margin-top:1em">Load more</button>
+  <% } %>
+  <%   }else{ %>
   ยังไม่มีข้อมูลในส่วนนี้
   <% } %>
 
-
-
-  <!-- <button class="fluid ui button">Load more</button> -->
 </div>
+
+
 
 <div class="ui tab basic segment" data-tab="ab">
 
-  <% if(portfolioDataType2.length){
-    for(var i = 0;i < portfolioDataType2.length;i++) {
-       if(portfolioDataType2[i].pfoCatagoryID == 'บริการวิชาการ'){ %>
-  <a class="ui link card fluid" href="#">
-    <div class="content">
-      <div class="header"><%=portfolioDataType2[i].pfoTitile%></div>
-      <div class="meta">
-        <span class="category"><%=portfolioDataType2[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType2[i].pfoYears%></span>
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, typically consisting of alphabetic and numeric characters</p>
-      </div>
+  <% if(portfolioDataType2.length){ %>
+  <div id="tabPFOType2">
+    <div class="ui horizontal teal statistic tiny">
+      <div class="label">กำลังแสดง</div>
+      <div class="value " id="PFOType2Showonlabel"><%=portfolioDataType2.length%></div>
+      <input type="hidden" id="PFOType2Showon" value="<%=portfolioDataType2.length%>" />
+      <div class="label">จาก</div>
+      <div class="value"><%=countAllPFOType2.countPFOType2%></div>
+      <input type="hidden" id="countAllPFOType2input" value="<%=countAllPFOType2.countPFOType2%>" />
     </div>
 
-  </a>
-  <% }
-  }
-  }else{ %>
+    <% for( i = 0;i < portfolioDataType2.length;i++) {
+       if(portfolioDataType2[i].pfoCatagoryID == 'บริการวิชาการ'){ %>
+    <a class="ui link card fluid" href="/profile/<%=userData.id%>/<%=portfolioDataType2[i].pfoID%>">
+      <div class="content">
+        <div class="header"><%=portfolioDataType2[i].pfoTitile%></div>
+        <div class="meta">
+          <span class="category"><%=portfolioDataType2[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType2[i].pfoYears%></span>
+        </div>
+        <div class="description">
+          <% if(portfolioDataType2[i].pfoIntro != '' && portfolioDataType2[i].pfoIntro != null && portfolioDataType2[i].pfoIntro != undefined){%>
+          <div class="description">
+            <p><%=portfolioDataType2[i].pfoIntro%></p>
+          </div>
+          <%}else{ %>
+
+          <% } %>
+        </div>
+      </div>
+    </a>
+    <% }
+  }%>
+  </div>
+  <%if(portfolioDataType2.length >= countAllPFOType2.countPFOType2  ){ %>
+
+  <%   }else{ %>
+  <button class="fluid ui button" id="loadmorePFOType2" style="margin-top:1em">Load more</button>
+  <% } %>
+  <%   }else{ %>
   ยังไม่มีข้อมูลในส่วนนี้
   <% } %>
 
@@ -77,26 +103,7 @@
 
 <div class="ui tab basic segment" data-tab="ac">
 
-  <% if(portfolioDataType3.length){
-    for(var i = 0;i < portfolioDataType3.length;i++) {
-       if(portfolioDataType3[i].pfoCatagoryID == 'รางวัล'){ %>
-  <a class="ui link card fluid" href="#">
-    <div class="content">
-      <div class="header"><%=portfolioDataType3[i].pfoTitile%></div>
-      <div class="meta">
-        <span class="category"><%=portfolioDataType3[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType3[i].pfoYears%></span>
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, typically consisting of alphabetic and numeric characters</p>
-      </div>
-    </div>
-
-  </a>
-  <% }
-  }
-  }else{ %>
-  ยังไม่มีข้อมูลในส่วนนี้
-  <% } %>
+  
 
 </div>
 

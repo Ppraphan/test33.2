@@ -1,5 +1,6 @@
 <% include ../partials/head %>
 <script src="js/plugins/qr-code.js"></script>
+<script src="js/profile.js"></script>
 
 <title><%=userData.firstname%> <%=userData.lastname%> | RMUTT Researcher</title>
 <script>
@@ -22,7 +23,7 @@
 
       <div class="column five wide ">
         <div class="row ">
-
+          <input type="hidden"id="userid" value="<%=userData.id%>"/>
           <% if (userData.profilePic != '' && userData.profilePic != undefined && userData.profilePic != null) { %>
             <img class="ui small centered rounded image" src="/userprofile/<%=userData.profilePic%>">
           <% } else {%>
@@ -57,7 +58,7 @@
               </a>
               <a href="/all-works">
                 <button class="ui button tiny">
-                  แก้ไขผลงาน
+                  เพิ่มผลงาน
                 </button>
               </a>
             </div>

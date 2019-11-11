@@ -59,13 +59,13 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 app.use(fileUpload({
-  limits: {
-    fileSize: 30000000
-  },
+  limits: { fileSize:30000000 },
 }));
 
 //...
 app.use(busboy());
+
+
 
 //Models
 var models = require("./models");
