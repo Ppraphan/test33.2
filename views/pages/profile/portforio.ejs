@@ -103,30 +103,92 @@
 
 <div class="ui tab basic segment" data-tab="ac">
 
-  
+  <% if(portfolioDataType3.length){ %>
+  <div id="tabPFOType3">
+    <div class="ui horizontal teal statistic tiny">
+      <div class="label">กำลังแสดง</div>
+      <div class="value " id="PFOType3Showonlabel"><%=portfolioDataType3.length%></div>
+      <input type="hidden" id="PFOType3Showon" value="<%=portfolioDataType3.length%>" />
+      <div class="label">จาก</div>
+      <div class="value"><%=countAllPFOType3.countPFOType3%></div>
+      <input type="hidden" id="countAllPFOType3input" value="<%=countAllPFOType3.countPFOType3%>" />
+    </div>
+
+    <% for( i = 0;i < portfolioDataType3.length;i++) {
+       if(portfolioDataType3[i].pfoCatagoryID == 'รางวัล'){ %>
+    <a class="ui link card fluid" href="/profile/<%=userData.id%>/<%=portfolioDataType3[i].pfoID%>">
+      <div class="content">
+        <div class="header"><%=portfolioDataType3[i].pfoTitile%></div>
+        <div class="meta">
+          <span class="category"><%=portfolioDataType3[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType3[i].pfoYears%></span>
+        </div>
+        <div class="description">
+          <% if(portfolioDataType3[i].pfoIntro != '' && portfolioDataType3[i].pfoIntro != null && portfolioDataType3[i].pfoIntro != undefined){%>
+          <div class="description">
+            <p><%=portfolioDataType3[i].pfoIntro%></p>
+          </div>
+          <%}else{ %>
+
+          <% } %>
+        </div>
+      </div>
+    </a>
+    <% }
+  }%>
+  </div>
+  <%if(portfolioDataType3.length >= countAllPFOType3.countPFOType3  ){ %>
+
+  <%   }else{ %>
+  <button class="fluid ui button" id="loadmorePFOType3" style="margin-top:1em">Load more</button>
+  <% } %>
+  <%   }else{ %>
+  ยังไม่มีข้อมูลในส่วนนี้
+  <% } %>
+
 
 </div>
 
 <div class="ui tab basic  segment" data-tab="ad">
 
-  <% if(portfolioDataType4.length){
-    for(var i = 0;i < portfolioDataType4.length;i++) {
-       if(portfolioDataType4[i].pfoCatagoryID == 'อื่น ๆ'){ %>
-  <a class="ui link card fluid" href="#">
-    <div class="content">
-      <div class="header"><%=portfolioDataType4[i].pfoTitile%></div>
-      <div class="meta">
-        <span class="category"><%=portfolioDataType4[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType4[i].pfoYears%></span>
-      </div>
-      <div class="description">
-        <p>Text messaging, or texting, is the act of composing and sending electronic messages, typically consisting of alphabetic and numeric characters, typically consisting of alphabetic and numeric characters</p>
-      </div>
+  <% if(portfolioDataType4.length){ %>
+  <div id="tabPFOType4">
+    <div class="ui horizontal teal statistic tiny">
+      <div class="label">กำลังแสดง</div>
+      <div class="value " id="PFOType4Showonlabel"><%=portfolioDataType4.length%></div>
+      <input type="hidden" id="PFOType4Showon" value="<%=portfolioDataType4.length%>" />
+      <div class="label">จาก</div>
+      <div class="value"><%=countAllPFOType4.countPFOType4%></div>
+      <input type="hidden" id="countAllPFOType4input" value="<%=countAllPFOType4.countPFOType4%>" />
     </div>
 
-  </a>
-  <% }
-  }
-  }else{ %>
+    <% for( i = 0;i < portfolioDataType4.length;i++) {
+       if(portfolioDataType4[i].pfoCatagoryID == 'อื่น ๆ'){ %>
+    <a class="ui link card fluid" href="/profile/<%=userData.id%>/<%=portfolioDataType4[i].pfoID%>">
+      <div class="content">
+        <div class="header"><%=portfolioDataType4[i].pfoTitile%></div>
+        <div class="meta">
+          <span class="category"><%=portfolioDataType4[i].pfoCatagoryID%> | <i class="calendar alternate outline icon"></i><%=portfolioDataType4[i].pfoYears%></span>
+        </div>
+        <div class="description">
+          <% if(portfolioDataType4[i].pfoIntro != '' && portfolioDataType4[i].pfoIntro != null && portfolioDataType4[i].pfoIntro != undefined){%>
+          <div class="description">
+            <p><%=portfolioDataType4[i].pfoIntro%></p>
+          </div>
+          <%}else{ %>
+
+          <% } %>
+        </div>
+      </div>
+    </a>
+    <% }
+  }%>
+  </div>
+  <%if(portfolioDataType4.length >= countAllPFOType4.countPFOType4  ){ %>
+
+  <%   }else{ %>
+  <button class="fluid ui button" id="loadmorePFOType4" style="margin-top:1em">Load more</button>
+  <% } %>
+  <%   }else{ %>
   ยังไม่มีข้อมูลในส่วนนี้
   <% } %>
 

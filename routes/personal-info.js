@@ -435,6 +435,20 @@ module.exports = function(app) {
     });
   });
 
+  app.get('/getotherpfotype4', function(req, res) {
+    var valPFOType4Showon = req.query.valPFOType4Showon;
+    var userid = req.query.userid;
+
+    var sql = "SELECT * FROM project.portfolio where pfoUserAI_ID = " + userid + " and pfoCatagoryID = 'อื่น ๆ' order by pfoYears DESC limit " + valPFOType4Showon + ", 5;"
+
+    con.query(sql, function(err, results) {
+      console.log(sql);
+      if (err) console.log("Error Selecting : %s ", err);
+
+      res.send(results);
+    });
+  });
+
 
   app.get('/getuserdata', function(req, res) {
     var userinfo = req.user;

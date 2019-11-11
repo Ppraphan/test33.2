@@ -122,7 +122,7 @@ $(document).ready(function() {
 });
 
 
-// ปุ่มโหลดเพิ่มเติม สำหรับบริการวิชาการ
+// ปุ่มโหลดเพิ่มเติม สำหรับรางวัล
 $(document).ready(function() {
   $("#loadmorePFOType3").on('click', function() {
 
@@ -165,6 +165,62 @@ $(document).ready(function() {
 
           if (x >=countAllPFOType3input) {
         document.getElementById('loadmorePFOType3').style.display = "none";
+
+          }
+
+        }
+      });
+
+    }
+
+
+  });
+});
+
+
+// ปุ่มโหลดเพิ่มเติม สำหรับอื่น ๆ
+$(document).ready(function() {
+  $("#loadmorePFOType4").on('click', function() {
+
+    var userid = $('#userid').val();
+    var valPFOType4Showon = $('#PFOType4Showon').val();
+    var countAllPFOType4input = $('#countAllPFOType4input').val();
+
+    if (Number(valPFOType4Showon) >= Number(countAllPFOType4input)) {
+    document.getElementById('loadmorePFOType4').style.display = "none";
+
+    }else{
+      $.ajax({
+        type: 'GET',
+        url: '/getotherpfotype4?valPFOType4Showon=' + valPFOType4Showon + '&userid=' + userid,
+        dataType: 'json',
+        success: function(data) {
+          for (var i = 0; i < data.length; i++) {
+            if (data[i] != ' ' && data[i] != undefined && data[i] != null) {
+              $("#tabPFOType4").append(
+                '<a class="ui link card fluid" href="/profile/' + userid + '/' + data[i].pfoID + '">' +
+                '<div class="content">' +
+                '<div class="header">' + data[i].pfoTitile + '</div>' +
+                '  <div class="meta">' +
+                '<span class="category">' + data[i].pfoCatagoryID + ' | <i class="calendar alternate outline icon"></i>' + data[i].pfoYears + '</span>' +
+                '</div>' +
+                '<div class="description">' +
+
+                '<div class="description">' +
+                '<p>' + data[i].pfoIntro + '</p>' +
+
+                '</div>' +
+
+                '</div></div></a>');
+            }
+          }
+
+          document.getElementById('PFOType4Showon').value = data.length + Number(valPFOType4Showon);
+          var x= data.length + Number(valPFOType4Showon);
+          document.getElementById('PFOType4Showonlabel').innerHTML = data.length + Number(valPFOType4Showon);
+
+          if (x >=countAllPFOType4input) {
+        document.getElementById('loadmorePFOType4').style.display = "none";
 
           }
 

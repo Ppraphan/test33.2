@@ -1,6 +1,7 @@
 const con = require('./connect-db.js'); /*เชื่อมต่อฐานข้อมูล*/
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
+const dateTime = require('node-datetime');
 
 module.exports = function(app) {
 
@@ -85,6 +86,8 @@ module.exports = function(app) {
     var pfoDetails = req.body.pfoDetails;
 
 
+    var dt = dateTime.create();
+    var formatted = dt.format('YmdHMS');
 
     if (req.body.pfoCatagoryID == '' || req.body.pfoCatagoryID == undefined) pfoCatagoryID = "-";
     if (req.body.pfoYears == '' || req.body.pfoYears == undefined) pfoYears = "-";
